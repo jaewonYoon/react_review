@@ -2,7 +2,8 @@ import React from 'react';
 
 import './collection-item.styles.scss';
 
-const CollectionItem = ({ id, name, price, imageUrl }) => (
+const CollectionItem = ({ name, price, imageUrl }) => {
+  return (
   <div className='collection-item'>
     <div
       className='image'
@@ -15,6 +16,6 @@ const CollectionItem = ({ id, name, price, imageUrl }) => (
       <span className='price'>{price}</span>
     </div>
   </div>
-);
+)};
 
 export default CollectionItem;
