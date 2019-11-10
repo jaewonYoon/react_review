@@ -7,16 +7,7 @@ import {auth} from '../../firebase/firebase.utils';
 
 import './header.styles.scss';
 
-const signOut = async (history) => {
-  await auth.signOut(); 
-  await setTimeout(() => {
-    console.log('done')
-  },5000); 
-  history.push('/');
-}
-
-const Header = ({currentUser,history}) => {
-  console.log(currentUser);
+const Header = ({currentUser}) => {
   return (
   <div className='header'>
     <Link className='logo-container' to='/'>
