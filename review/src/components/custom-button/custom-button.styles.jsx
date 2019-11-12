@@ -26,12 +26,12 @@ const invertedButtonStyles = css`
 
 const getButtonStyles = props => {
     if(props.isGoogleSignIn){
-        return googleSignInstyles;
+        return googleSignInStyles;
     }
     return props.inverted ? invertedButtonStyles : buttonStyles
 }
 
-const googleSignInstyles = css`
+const googleSignInStyles = css`
     background-color: #4285f4;
     color: white;
     border:none;
