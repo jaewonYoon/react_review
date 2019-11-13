@@ -15,7 +15,6 @@ const CartIcon = ({toggleCartHidden, cartItems}) => (
     </div>
 );
 const mapStateToProps = (state) => {
-    console.log('cart-icon mapStateToProps called');
     return ({
     cartItems: selectCartItemsCount(state)
 })}
