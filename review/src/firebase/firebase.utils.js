@@ -21,11 +21,8 @@ firebase.initializeApp(config);
 export const createUserProfileDocument = async (userAuth, additionalData) => {
         if(!userAuth) return;
         const userRef = firestore.doc(`users/${userAuth.uid}`);
-        console.log('userRef: ', userRef);
-        const collectionRef = firestore.collection('users');
         const snapShot = await userRef.get(); 
 
-        const collectionSnapshot = await collectionRef.get(); 
 
         if(!snapShot.exists){
                 const{displayName, email} = userAuth;
@@ -59,7 +56,24 @@ export const addCollectionAndDocuments = async(collectionKey, objectsToAdd)  => 
         // 중간에 서버가 끊기면 null 반환한다. 
         await batch.commit();
 }
+export const convertCollectionsSnapshotToMap = (collections) => {
+        const transformedCollection = collections.docs
+        .filter((doc,index) => index <5)
+        .map((doc) => {
+                const{title, items} = doc.data(); 
+                return {
+                        routeName: encodeURI(title.toLowerCase()), 
+                        id:doc.id,
+                        title,
+                        items
+                }
+        });
 
+        return transformedCollection.reduce((accumulator, collection) =>{ 
+                accumulator[collection.title.toLowerCase()] = collection;
+                return accumulator;
+        } ,{})
+}
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
