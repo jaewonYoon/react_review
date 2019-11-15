@@ -11,6 +11,7 @@ const WithSpinner = WrappedComponent => ({isLoading, ...otherProps}) =>{
         <WrappedComponent {...otherProps}/>
     )
 }
+
 // const WithSpinner = WrappedComponent => {
 //    const spinner = ({isLaoding, ...otherProps}) => {
 //         return isLoading? (
