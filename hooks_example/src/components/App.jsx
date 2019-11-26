@@ -1,11 +1,12 @@
 import React from 'react';
+import UseEffectExample from './use-effect-example/use-effect-example.component';
+import './App.scss';
 
-const App = () => {
+
+const App = (props) => {
     return (
-       <div>
-            App       
-       </div>
-    )
+       <UseEffectExample />
+    ); 
 }
 
 export default App; 
