@@ -4,7 +4,6 @@ import StripeCheckout from 'react-stripe-checkout';
 const StripeCheckoutButton = ({price}) => {
     const publishablekey = "pk_test_Hu2gNODFZuyEYmiCW1tiubxg00MjCOuowg";
     const onToken = token => {
-        console.log(token);
         alert('Payment Successful');
     }
     return (
