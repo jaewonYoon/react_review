@@ -5,7 +5,6 @@ const UseEffectExample = () => {
     const [searchQuery, setSearchQuery] = useState('Bret');
     // it doesn't get any value but function called when ever component is changed
     useEffect( () => {
-        console.log('hiot');
         const fetchFunc = async () => {
             const response = await fetch(
                 `https://jsonplaceholder.typicode.com/users?username=${searchQuery}`
