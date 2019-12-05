@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2373,63 +2373,65 @@ const Signup = () => {
     }));
   };
 
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_8___default.a, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 43
-    },
-    __self: undefined
-  }, __jsx("title", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 44
-    },
-    __self: undefined
-  }, "NodeBird"), __jsx("link", {
-    rel: "stylesheet",
-    href: "https://cdnjs.cloudflare.com/ajax/libs/antd/3.23.6/antd.min.css",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 45
-    },
-    __self: undefined
-  })), __jsx(_components_AppLayout__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 47
-    },
-    __self: undefined
-  }, __jsx(antd__WEBPACK_IMPORTED_MODULE_9__["Form"], {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, __jsx(antd__WEBPACK_IMPORTED_MODULE_9__["Form"], {
     onSubmit: onSubmit,
     style: {
       padding: 10
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 48
+      lineNumber: 43
     },
     __self: undefined
   }, __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 49
+      lineNumber: 44
     },
     __self: undefined
   }, __jsx("label", {
     htmlFor: "id",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 50
+      lineNumber: 45
     },
     __self: undefined
   }, "\uC544\uC774\uB514"), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 46
+    },
+    __self: undefined
+  }), __jsx(antd__WEBPACK_IMPORTED_MODULE_9__["Input"], {
+    name: "id",
+    required: true,
+    onChange: onChange,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 47
+    },
+    __self: undefined
+  })), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49
+    },
+    __self: undefined
+  }, __jsx("label", {
+    htmlFor: "nick",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: undefined
+  }, "\uB2C9\uB124\uC784"), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 51
     },
     __self: undefined
   }), __jsx(antd__WEBPACK_IMPORTED_MODULE_9__["Input"], {
-    name: "id",
+    name: "nick",
     required: true,
     onChange: onChange,
     __source: {
@@ -2444,20 +2446,21 @@ const Signup = () => {
     },
     __self: undefined
   }, __jsx("label", {
-    htmlFor: "nick",
+    htmlFor: "pass",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 55
     },
     __self: undefined
-  }, "\uB2C9\uB124\uC784"), __jsx("br", {
+  }, "\uBE44\uBC00\uBC88\uD638"), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 56
     },
     __self: undefined
   }), __jsx(antd__WEBPACK_IMPORTED_MODULE_9__["Input"], {
-    name: "nick",
+    name: "pass",
+    type: "password",
     required: true,
     onChange: onChange,
     __source: {
@@ -2472,51 +2475,22 @@ const Signup = () => {
     },
     __self: undefined
   }, __jsx("label", {
-    htmlFor: "pass",
+    htmlFor: "pass_chk",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 60
     },
     __self: undefined
-  }, "\uBE44\uBC00\uBC88\uD638"), __jsx("br", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 61
-    },
-    __self: undefined
-  }), __jsx(antd__WEBPACK_IMPORTED_MODULE_9__["Input"], {
-    name: "pass",
-    type: "password",
-    required: true,
-    onChange: onChange,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 62
-    },
-    __self: undefined
-  })), __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 64
-    },
-    __self: undefined
-  }, __jsx("label", {
-    htmlFor: "pass_chk",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 65
-    },
-    __self: undefined
   }, "\uBE44\uBC00\uBC88\uD638 \uD655\uC778"), passwordError ? __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 68
+      lineNumber: 63
     },
     __self: undefined
   }, "\uBE44\uBC00\uBC88\uD638\uAC00 \uC77C\uCE58\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.") : null, __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 71
+      lineNumber: 66
     },
     __self: undefined
   }), __jsx(antd__WEBPACK_IMPORTED_MODULE_9__["Input"], {
@@ -2526,13 +2500,13 @@ const Signup = () => {
     onChange: onChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72
+      lineNumber: 67
     },
     __self: undefined
   })), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74
+      lineNumber: 69
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_9__["Checkbox"], {
@@ -2542,7 +2516,7 @@ const Signup = () => {
     onChange: onChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 75
+      lineNumber: 70
     },
     __self: undefined
   }, "\uD68C\uC6D0\uAC00\uC785\uC5D0 \uB3D9\uC758\uD569\uB2C8\uB2E4."), termError ? __jsx("span", {
@@ -2551,13 +2525,13 @@ const Signup = () => {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 73
     },
     __self: undefined
   }, "\uC57D\uAD00\uC5D0 \uB3D9\uC758\uD574\uC8FC\uC138\uC694.") : null), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 82
+      lineNumber: 77
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_9__["Button"], {
@@ -2565,17 +2539,17 @@ const Signup = () => {
     htmlType: "submit",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 83
+      lineNumber: 78
     },
     __self: undefined
-  }, "\uAC00\uC785\uD558\uAE30")))));
+  }, "\uAC00\uC785\uD558\uAE30"))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Signup);
 
 /***/ }),
 
-/***/ 6:
+/***/ 5:
 /*!*******************************!*\
   !*** multi ./pages/signup.js ***!
   \*******************************/

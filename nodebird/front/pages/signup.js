@@ -40,50 +40,44 @@ const Signup = () => {
 
     return (
         <>
-            <Head>
-                <title>NodeBird</title>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.23.6/antd.min.css"/>
-            </Head>
-            <AppLayout>
-                <Form onSubmit={onSubmit} style={{padding:10}}>
-                    <div>
-                        <label htmlFor="id">아이디</label>
-                        <br/>
-                        <Input name="id" required onChange={onChange}/>
-                    </div>
-                    <div>
-                        <label htmlFor="nick">닉네임</label>
-                        <br/>
-                        <Input name="nick" required onChange={onChange}/>
-                    </div>
-                    <div>
-                        <label htmlFor="pass">비밀번호</label>
-                        <br/>
-                        <Input name="pass" type="password" required onChange={onChange}/>
-                    </div>
-                    <div>
-                        <label htmlFor="pass_chk">비밀번호 확인</label>
-                        {
-                            passwordError ? 
-                            <p>비밀번호가 일치하지 않습니다.</p>:
-                            null
-                        }
-                        <br/>
-                        <Input name="pass_chk" type="password" required onChange={onChange}/>
-                    </div>
-                    <div>
-                        <Checkbox name="term"  required value={userCredentials.term} onChange={onChange}>회원가입에 동의합니다.</Checkbox>
-                        {
-                            termError ?
-                            <span style={{color:'blue'}}>약관에 동의해주세요.</span>: 
-                            null 
-                        }
-                    </div>
-                    <div>
-                        <Button type="primary" htmlType="submit">가입하기</Button>
-                    </div>
-                </Form>
-            </AppLayout>
+            <Form onSubmit={onSubmit} style={{padding:10}}>
+                <div>
+                    <label htmlFor="id">아이디</label>
+                    <br/>
+                    <Input name="id" required onChange={onChange}/>
+                </div>
+                <div>
+                    <label htmlFor="nick">닉네임</label>
+                    <br/>
+                    <Input name="nick" required onChange={onChange}/>
+                </div>
+                <div>
+                    <label htmlFor="pass">비밀번호</label>
+                    <br/>
+                    <Input name="pass" type="password" required onChange={onChange}/>
+                </div>
+                <div>
+                    <label htmlFor="pass_chk">비밀번호 확인</label>
+                    {
+                        passwordError ? 
+                        <p>비밀번호가 일치하지 않습니다.</p>:
+                        null
+                    }
+                    <br/>
+                    <Input name="pass_chk" type="password" required onChange={onChange}/>
+                </div>
+                <div>
+                    <Checkbox name="term"  required value={userCredentials.term} onChange={onChange}>회원가입에 동의합니다.</Checkbox>
+                    {
+                        termError ?
+                        <span style={{color:'blue'}}>약관에 동의해주세요.</span>: 
+                        null 
+                    }
+                </div>
+                <div>
+                    <Button type="primary" htmlType="submit">가입하기</Button>
+                </div>
+            </Form>
         </>
     )
 };
