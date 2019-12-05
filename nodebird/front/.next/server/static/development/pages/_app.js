@@ -109,8 +109,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! antd */ "antd");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _LoginForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./LoginForm */ "./components/LoginForm.jsx");
+/* harmony import */ var _UserProfile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./UserProfile */ "./components/UserProfile.jsx");
 var _jsxFileName = "C:\\Users\\jaewon\\Desktop\\web\\react_review\\nodebird\\front\\components\\AppLayout.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -197,6 +199,7 @@ const AppLayout = ({
     },
     __self: undefined
   }))), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Row"], {
+    gutter: "10",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 25
@@ -210,78 +213,24 @@ const AppLayout = ({
       lineNumber: 26
     },
     __self: undefined
-  }, dummy.isLoggedIn ? __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Card"], {
-    actions: [__jsx("div", {
-      key: "twit",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 30
-      },
-      __self: undefined
-    }, "\uCA31\uC9F9", __jsx("br", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 30
-      },
-      __self: undefined
-    }), dummy.Post.length), __jsx("div", {
-      key: "following",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 31
-      },
-      __self: undefined
-    }, "\uD314\uB85C\uC789", __jsx("br", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 31
-      },
-      __self: undefined
-    }), dummy.Followings.length), __jsx("div", {
-      key: "follower",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 32
-      },
-      __self: undefined
-    }, "\uD314\uB85C\uC6CC", __jsx("br", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 32
-      },
-      __self: undefined
-    }), dummy.Followers.length)],
+  }, dummy.isLoggedIn ? __jsx(_UserProfile__WEBPACK_IMPORTED_MODULE_4__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 28
     },
     __self: undefined
-  }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Card"].Meta, {
-    avatar: __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Avatar"], {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 37
-      },
-      __self: undefined
-    }, dummy.nickname[0]),
-    title: dummy.nickname,
+  }) : __jsx(_LoginForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
-    },
-    __self: undefined
-  })) : __jsx(_LoginForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 42
+      lineNumber: 29
     },
     __self: undefined
   })), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Col"], {
     xs: 24,
-    md: 6,
+    md: 12,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 44
+      lineNumber: 31
     },
     __self: undefined
   }, children), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Col"], {
@@ -289,7 +238,7 @@ const AppLayout = ({
     md: 6,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 47
+      lineNumber: 34
     },
     __self: undefined
   })));
@@ -342,6 +291,9 @@ const LoginForm = () => {
     });
   }, [id, password]);
   return __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+    style: {
+      margin: '10px'
+    },
     onSubmit: onSubmitForm,
     __source: {
       fileName: _jsxFileName,
@@ -408,6 +360,9 @@ const LoginForm = () => {
     },
     __self: undefined
   })), __jsx("div", {
+    style: {
+      marginTop: '10px'
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 35
@@ -445,6 +400,92 @@ const LoginForm = () => {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LoginForm);
+
+/***/ }),
+
+/***/ "./components/UserProfile.jsx":
+/*!************************************!*\
+  !*** ./components/UserProfile.jsx ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! antd */ "antd");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "C:\\Users\\jaewon\\Desktop\\web\\react_review\\nodebird\\front\\components\\UserProfile.jsx";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+const UserProfile = () => {
+  return __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Card"], {
+    actions: [__jsx("div", {
+      key: "twit",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 7
+      },
+      __self: undefined
+    }, "\uCA31\uC9F9", __jsx("br", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 7
+      },
+      __self: undefined
+    }), dummy.Post.length), __jsx("div", {
+      key: "following",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 8
+      },
+      __self: undefined
+    }, "\uD314\uB85C\uC789", __jsx("br", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 8
+      },
+      __self: undefined
+    }), dummy.Followings.length), __jsx("div", {
+      key: "follower",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 9
+      },
+      __self: undefined
+    }, "\uD314\uB85C\uC6CC", __jsx("br", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 9
+      },
+      __self: undefined
+    }), dummy.Followers.length)],
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: undefined
+  }, __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Card"].Meta, {
+    avatar: __jsx(Avatar, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 14
+      },
+      __self: undefined
+    }, dummy.nickname[0]),
+    title: dummy.nickname,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    },
+    __self: undefined
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (UserProfile);
 
 /***/ }),
 
@@ -2464,13 +2505,13 @@ const HomeApp = ({
 }) => __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 7
+    lineNumber: 6
   },
   __self: undefined
 }, __jsx("title", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 8
+    lineNumber: 7
   },
   __self: undefined
 }, "NodeBird"), __jsx("link", {
@@ -2478,19 +2519,19 @@ const HomeApp = ({
   href: "https://cdnjs.cloudflare.com/ajax/libs/antd/3.23.6/antd.min.css",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 9
+    lineNumber: 8
   },
   __self: undefined
 })), __jsx(_components_AppLayout__WEBPACK_IMPORTED_MODULE_2__["default"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 11
+    lineNumber: 10
   },
   __self: undefined
 }, __jsx(Component, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 12
+    lineNumber: 11
   },
   __self: undefined
 })));

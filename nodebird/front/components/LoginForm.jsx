@@ -20,7 +20,7 @@ const LoginForm = () => {
         })
     },[id,password]);
     return( 
-        <Form onSubmit = {onSubmitForm}>
+        <Form style={{margin:'10px'}} onSubmit = {onSubmitForm}>
             <div>
                 <label htmlFor="user-id">아이디</label>
                 <br/>
@@ -32,7 +32,7 @@ const LoginForm = () => {
                 <Input name="user-password type=" type="password" value={password} required
                 onChange={onChangePassword} />
             </div>
-            <div>
+            <div style={{marginTop: '10px'}}>
                 <Button type="primary" htmlType="submit" loading={false}>로그인</Button>
                 <Link href="/signup"><a><Button>회원가입</Button></a></Link>
             </div>
