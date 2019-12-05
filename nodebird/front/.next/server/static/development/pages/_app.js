@@ -108,11 +108,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! antd */ "antd");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _LoginForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./LoginForm */ "./components/LoginForm.jsx");
 var _jsxFileName = "C:\\Users\\jaewon\\Desktop\\web\\react_review\\nodebird\\front\\components\\AppLayout.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+
+const dummy = {
+  nickname: 'Jay',
+  Post: [],
+  Followings: [],
+  Followers: [],
+  isLoggedIn: false
+};
 
 const AppLayout = ({
   children
@@ -120,61 +129,61 @@ const AppLayout = ({
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 17
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Menu"], {
     mode: "horizontal",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
+      lineNumber: 18
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Menu"].Item, {
     key: "home",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 19
     },
     __self: undefined
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 19
     },
     __self: undefined
   }, __jsx("a", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 19
     },
     __self: undefined
   }, "\uB178\uB4DC\uBC84\uB4DC"))), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Menu"].Item, {
     key: "profile",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 20
     },
     __self: undefined
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/profile",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 20
     },
     __self: undefined
   }, __jsx("a", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 20
     },
     __self: undefined
   }, "\uD504\uB85C\uD544"))), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Menu"].Item, {
     key: "mail",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 21
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Input"].Search, {
@@ -184,32 +193,258 @@ const AppLayout = ({
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 22
     },
     __self: undefined
-  }))), __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  }))), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Row"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 25
+    },
+    __self: undefined
+  }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Col"], {
+    xs: 24,
+    md: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
+    },
+    __self: undefined
+  }, dummy.isLoggedIn ? __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Card"], {
+    actions: [__jsx("div", {
+      key: "twit",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 30
+      },
+      __self: undefined
+    }, "\uCA31\uC9F9", __jsx("br", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 30
+      },
+      __self: undefined
+    }), dummy.Post.length), __jsx("div", {
+      key: "following",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 31
+      },
+      __self: undefined
+    }, "\uD314\uB85C\uC789", __jsx("br", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 31
+      },
+      __self: undefined
+    }), dummy.Followings.length), __jsx("div", {
+      key: "follower",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 32
+      },
+      __self: undefined
+    }, "\uD314\uB85C\uC6CC", __jsx("br", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 32
+      },
+      __self: undefined
+    }), dummy.Followers.length)],
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    },
+    __self: undefined
+  }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Card"].Meta, {
+    avatar: __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Avatar"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 37
+      },
+      __self: undefined
+    }, dummy.nickname[0]),
+    title: dummy.nickname,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: undefined
+  })) : __jsx(_LoginForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 42
+    },
+    __self: undefined
+  })), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Col"], {
+    xs: 24,
+    md: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 44
+    },
+    __self: undefined
+  }, children), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Col"], {
+    xs: 24,
+    md: 6,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 47
+    },
+    __self: undefined
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (AppLayout);
+
+/***/ }),
+
+/***/ "./components/LoginForm.jsx":
+/*!**********************************!*\
+  !*** ./components/LoginForm.jsx ***!
+  \**********************************/
+/*! exports provided: useInput, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useInput", function() { return useInput; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! antd */ "antd");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+var _jsxFileName = "C:\\Users\\jaewon\\Desktop\\web\\react_review\\nodebird\\front\\components\\LoginForm.jsx";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+const useInput = (initValue = null) => {
+  const {
+    0: value,
+    1: setter
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(initValue);
+  const handler = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(e => {
+    setter(e.target.value);
+  }, []);
+  return [value, handler];
+};
+
+const LoginForm = () => {
+  const [id, onChangeId] = useInput('');
+  const [password, onChangePassword] = useInput('');
+  const onSubmitForm = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(e => {
+    e.preventDefault();
+    console.log({
+      id,
+      pasword
+    });
+  }, [id, password]);
+  return __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+    onSubmit: onSubmitForm,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 23
+    },
+    __self: undefined
+  }, __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 24
+    },
+    __self: undefined
+  }, __jsx("label", {
+    htmlFor: "user-id",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 25
+    },
+    __self: undefined
+  }, "\uC544\uC774\uB514"), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
+    },
+    __self: undefined
+  }), __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+    name: "user-id",
+    value: id,
+    onChange: onChangeId,
+    required: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 27
+    },
+    __self: undefined
+  })), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: undefined
+  }, __jsx("label", {
+    htmlFor: "user-password",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: undefined
+  }, "\uBE44\uBC00\uBC88\uD638"), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31
+    },
+    __self: undefined
+  }), __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+    name: "user-password type=",
+    type: "password",
+    value: password,
+    required: true,
+    onChange: onChangePassword,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 32
+    },
+    __self: undefined
+  })), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 35
+    },
+    __self: undefined
+  }, __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    type: "primary",
+    htmlType: "submit",
+    loading: false,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: undefined
+  }, "\uB85C\uADF8\uC778"), __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
     href: "/signup",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 37
     },
     __self: undefined
   }, __jsx("a", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 37
     },
     __self: undefined
-  }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+  }, __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 37
     },
     __self: undefined
-  }, "\uD68C\uC6D0\uAC00\uC785"))), children);
+  }, "\uD68C\uC6D0\uAC00\uC785")))));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (AppLayout);
+/* harmony default export */ __webpack_exports__["default"] = (LoginForm);
 
 /***/ }),
 
