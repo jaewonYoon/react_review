@@ -1,18 +1,18 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Link from 'next/link';
 import {Menu, Input, Button, Row, Col, Card, Avatar, Form} from 'antd';
+import {useSelector, useDispatch} from 'react-redux'; 
 
 import LoginForm from './LoginForm';
 import UserProfile from './UserProfile';
-const dummy ={
-    nickname: 'Jay',
-    Post: [],
-    Followings: [],
-    Followers: [],
-    isLoggedIn: false
-}
+import {loginAction} from '../reducers/user';
 
 const AppLayout = ({children}) => {
+    const dispatch = useDispatch(); 
+    const {isLoggedIn} = useSelector((state) => state.user); 
+    useEffect( () => {
+        // dispatch(loginAction);
+    },[]);
     return (
         <div>
             <Menu mode="horizontal">
@@ -22,9 +22,9 @@ const AppLayout = ({children}) => {
                     <Input.Search enterButton style={{verticalAlign:'middle'}}/>
                 </Menu.Item>
             </Menu>
-            <Row gutter='10'>
+            <Row gutter={10}>
                 <Col xs={24} md={6} >
-                    {dummy.isLoggedIn ? 
+                    {isLoggedIn ? 
                     <UserProfile/>:
                      <LoginForm/>}
                 </Col>

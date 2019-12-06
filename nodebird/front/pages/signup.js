@@ -1,9 +1,9 @@
 import React,{useState} from 'react';
-import Head from 'next/head';
 import {Form, Input, Checkbox, Button} from 'antd';
+import PropTypes from 'prop-types'; 
 
-import AppLayout from '../components/AppLayout';
-
+import {useDispatch} from 'react-redux';
+import {signUpAction} from '../reducers/user';
 const Signup = () => {
     const [userCredentials, setCredentials]= useState({
         id: '',
@@ -13,9 +13,10 @@ const Signup = () => {
         pass_chk :'',
         term: false, 
     })
+    const {id,nick,pass} = userCredentials;
     const [passwordError, setPasswordError] = useState(false);
     const [termError, setTermError] =useState(false);
-
+    const dispatch = useDispatch();
     const onSubmit = (e) => {
         e.preventDefault();
         const {pass_chk, pass,term} = userCredentials;
@@ -29,6 +30,11 @@ const Signup = () => {
         }
         setTermError(false); 
         setPasswordError(false);
+        dispatch(signUpAction({
+            id,
+            nick,
+            pass
+        }))
     }
     const onChange = (e) => {
         const {name,value} = e.target;

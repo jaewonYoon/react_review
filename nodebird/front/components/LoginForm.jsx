@@ -1,6 +1,9 @@
 import React,{useState, useCallback} from 'react';
 import {Form, Input,Button} from 'antd';
 import Link from 'next/link';
+import {useDispatch} from 'react-redux';
+import {loginAction} from '../reducers/user';
+// import {useInput} from '../pages/signup';
 
 export const useInput = (initValue = null) => {
     const [value,setter] = useState(initValue);
@@ -11,13 +14,12 @@ export const useInput = (initValue = null) => {
 };
 
 const LoginForm = () => {
+    const dispatch= useDispatch(); 
     const [id,onChangeId] = useInput(''); 
     const [password,onChangePassword] = useInput('');
     const onSubmitForm = useCallback((e) => {
         e.preventDefault();
-        console.log({
-            id,pasword
-        })
+        dispatch(loginAction);
     },[id,password]);
     return( 
         <Form style={{margin:'10px'}} onSubmit = {onSubmitForm}>

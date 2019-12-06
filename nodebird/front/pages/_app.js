@@ -3,7 +3,7 @@ import Head from 'next/head';
 import AppLayout from '../components/AppLayout';
 import {Provider} from 'react-redux'; 
 import withRedux from 'next-redux-wrapper'; 
-import {createStore} from 'redux';
+import {createStore, applyMiddleware,compose} from 'redux';
 import rootReducer from '../reducers';   
 import PropTypes from 'prop-types';
 
@@ -25,6 +25,11 @@ HomeApp.propTypes= {
     store: PropTypes.object 
 }
 export default withRedux((initialState,options) => {
-    const store = createStore(rootReducer,initialState);
-    return store; 
+    const middleWares = [];
+    const enhancer = compose(
+        applyMiddleware(...middleWares),
+        !options.isServer && typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined' ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f,
+    );
+    const store = createStore(rootReducer,initialState,enhancer);
+    return store;   
 })(HomeApp);

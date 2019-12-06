@@ -1,26 +1,25 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import PostForm from '../components/PostForm'; 
 import PostCard from '../components/PostCard';
-
+import {useDispatch, useSelector, connect} from'react-redux'; 
+import {loginAction, logoutAction} from '../reducers/user';
 // 메인화면 루트 파일 next는 import react를 하지 않아도 된다.  
-const dummy = {
-    isLoggedIn : true,
-    imagePaths: [],
-    mainPosts: [{
-        User:{
-            id: 1,
-            nickname: 'Jay',
-        },
-        content: '첫 번째 게시글',
-        img: 'https://images.unsplash.com/photo-1575550590262-4ad1d8738faa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80'
-    }],
-}
 
-const Home = () => {
+const Home = ({}) => {
+    const dispatch = useDispatch(); 
+    const {isLoggedIn,user} = useSelector( (state) =>state.user);
+    const {mainPosts} = useSelector( (state) => state.post);
+    // const {isLoggedIn, user} = useSelector(state => state.user);
+    //useEffect할 때 [] 안에 아무것도 없다면 componentDidMount와 같음 
+    useEffect( () => {
+        // 첫번째 렌더링 될 때 이 dispatch도 함께 되는 것 
+        // dispatch(loginAction);
+    },[]);
     return(
         <div>
-            {dummy.isLoggedIn && <PostForm/>}
-            {dummy.mainPosts.map( (c) => {
+            {user ? <div>로그인 했습니다: {user.nickname}</div> : <div>로그아웃 했습니다.</div>}
+            {isLoggedIn && <PostForm/>}
+            {mainPosts.map( (c) => {
                 return(
                     <PostCard key={c} post={c}/>
                 )
