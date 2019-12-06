@@ -6,7 +6,7 @@ const dummy = {
     mainPosts: [{
         User:{
             id: 1,
-            nickname: 'Jay',
+            nickname: 'Jay',    
         },
         content: '첫 번째 게시글',
         img: 'https://images.unsplash.com/photo-1575550590262-4ad1d8738faa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80'
