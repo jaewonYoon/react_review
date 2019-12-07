@@ -1,14 +1,14 @@
+//root 
 import React from 'react';
+import PropTypes from 'prop-types'; 
 import Head from 'next/head';
 import AppLayout from '../components/AppLayout';
 import {Provider} from 'react-redux'; 
-import createSagaMiddleware from 'redux-saga';
 import withRedux from 'next-redux-wrapper'; 
-import PropTypes from 'prop-types';
-
-import {createStore, applyMiddleware,compose} from 'redux';
+import {createStore,compose,applyMiddleware} from 'redux';
+import createSagaMiddleware from 'redux-saga'; 
 import rootReducer from '../reducers';   
-import rootSaga from '../sagas/index';
+import rootSaga from '../sagas';
 const HomeApp = ({Component, store}) => (
     <>
     <Provider store={store}>

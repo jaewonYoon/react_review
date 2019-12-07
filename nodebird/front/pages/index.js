@@ -6,12 +6,13 @@ import {loginAction, logoutAction} from '../reducers/user';
 // 메인화면 루트 파일 next는 import react를 하지 않아도 된다.  
 
 const Home = ({}) => {
-    const dispatch = useDispatch(); 
     const {isLoggedIn,user} = useSelector( (state) =>state.user);
     const {mainPosts} = useSelector( (state) => state.post);
     // const {isLoggedIn, user} = useSelector(state => state.user);
     //useEffect할 때 [] 안에 아무것도 없다면 componentDidMount와 같음 
+    const dispatch = useDispatch();
     useEffect( () => {
+        
         // 첫번째 렌더링 될 때 이 dispatch도 함께 되는 것 
         // dispatch(loginAction);
     },[]);
