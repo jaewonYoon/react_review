@@ -3077,6 +3077,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 const initialState = {
   mainPosts: [{
+    id: 1,
     User: {
       id: 1,
       nickname: 'Jay'
@@ -3097,6 +3098,7 @@ const initialState = {
   commentAdded: false
 };
 const dummyPost = {
+  id: 2,
   User: {
     id: 1,
     nickname: 'jay'
@@ -3106,7 +3108,7 @@ const dummyPost = {
 const dummyComment = {
   User: {
     id: 1,
-    nickname: 2
+    nickname: 'Jay'
   },
   createdAt: new Date(),
   content: '더미 댓글입니다.'
@@ -3186,7 +3188,7 @@ const reducer = (state = initialState, action) => {
       {
         const postIndex = state.mainPosts.findIndex(v => v.id === action.data.postId);
         const post = state.mainPosts[postIndex];
-        const Comments = [...post.Comments, action.data.comment];
+        const Comments = [...post.Comments, dummyComment];
         const mainPosts = [...state.mainPosts];
         mainPosts[postIndex] = _objectSpread({}, post, {
           Comments
@@ -3499,13 +3501,17 @@ function* watchAddPost() {
   yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["takeLatest"])(_reducers_post__WEBPACK_IMPORTED_MODULE_1__["ADD_POST_REQUEST"], addPost);
 }
 
-function addCommentAPI() {}
+function addCommentAPI() {} // ADD_COMMENT_REQUEST에 대한 action 
 
-function* addComment() {
+
+function* addComment(action) {
   try {
     yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["delay"])(2000);
     yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["put"])({
-      type: _reducers_post__WEBPACK_IMPORTED_MODULE_1__["ADD_COMMENT_SUCCESS"]
+      type: _reducers_post__WEBPACK_IMPORTED_MODULE_1__["ADD_COMMENT_SUCCESS"],
+      data: {
+        postId: action.data.postId
+      }
     });
   } catch (e) {
     yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["put"])({

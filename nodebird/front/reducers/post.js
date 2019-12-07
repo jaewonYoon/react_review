@@ -1,5 +1,6 @@
 const initialState= {
     mainPosts: [{
+        id:1, 
         User:{
             id: 1,
             nickname: 'Jay',
@@ -18,6 +19,7 @@ const initialState= {
 }
 
 const dummyPost = {
+    id: 2, 
     User: {
        id: 1,
        nickname: 'jay',
@@ -27,7 +29,7 @@ const dummyPost = {
 const dummyComment = {
     User: {
         id: 1,
-        nickname:2 
+        nickname:'Jay' 
     },
     createdAt: new Date(),
     content: '더미 댓글입니다.'
@@ -115,7 +117,7 @@ const reducer = (state=initialState, action) => {
         case ADD_COMMENT_SUCCESS: {
             const postIndex = state.mainPosts.findIndex( v=> v.id ===action.data.postId);
             const post = state.mainPosts[postIndex];
-            const Comments = [...post.Comments, action.data.comment];
+            const Comments = [...post.Comments, dummyComment];
             const mainPosts = [...state.mainPosts];
             mainPosts[postIndex] = {...post,Comments}; 
             return {

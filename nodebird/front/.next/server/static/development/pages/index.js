@@ -134,6 +134,10 @@ const PostCard = ({
   const {
     me
   } = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(state => state.user);
+  const {
+    commentAdded,
+    isAddingComment
+  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(state => state.post);
   const onToggleComment = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(() => {
     setCommentFormOpened(prev => !prev);
   }, []);
@@ -145,16 +149,22 @@ const PostCard = ({
     }
 
     dispatch({
-      type: _reducers_post__WEBPACK_IMPORTED_MODULE_4__["ADD_COMMENT_REQUEST"]
+      type: _reducers_post__WEBPACK_IMPORTED_MODULE_4__["ADD_COMMENT_REQUEST"],
+      data: {
+        postId: post.id
+      }
     });
-  }, []);
+  }, [me && me.id]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    setCommentText('');
+  }, [commentAdded === true]);
   const onChangeCommentText = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(e => {
     setCommentText(e.target.value);
   }, []);
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 35
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Card"], {
@@ -164,7 +174,7 @@ const PostCard = ({
       src: post.img,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 31
+        lineNumber: 38
       },
       __self: undefined
     }),
@@ -173,7 +183,7 @@ const PostCard = ({
       key: "retweet",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 33
+        lineNumber: 40
       },
       __self: undefined
     }), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
@@ -181,7 +191,7 @@ const PostCard = ({
       key: "heart",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 34
+        lineNumber: 41
       },
       __self: undefined
     }), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
@@ -190,7 +200,7 @@ const PostCard = ({
       onClick: onToggleComment,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 35
+        lineNumber: 42
       },
       __self: undefined
     }), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
@@ -198,48 +208,48 @@ const PostCard = ({
       key: "ellipsis",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 36
+        lineNumber: 43
       },
       __self: undefined
     })],
     extra: __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Button"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 38
+        lineNumber: 45
       },
       __self: undefined
     }, "\uD314\uB85C\uC6B0"),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 36
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Card"].Meta, {
     avatar: __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Avatar"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 41
+        lineNumber: 48
       },
       __self: undefined
     }, post.User.nickname[0]),
-    title: post.User.nicname,
+    title: post.User.nickname,
     description: post.content,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
+      lineNumber: 47
     },
     __self: undefined
   })), commentFormOpened && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Form"], {
     onSubmit: onSubmitComment,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 48
+      lineNumber: 55
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Form"].Item, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 49
+      lineNumber: 56
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Input"].TextArea, {
@@ -248,47 +258,47 @@ const PostCard = ({
     onChange: onChangeCommentText,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 50
+      lineNumber: 57
     },
     __self: undefined
   })), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Button"], {
     type: "primary",
     htmlType: "submit",
+    loading: isAddingComment,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 52
+      lineNumber: 59
     },
     __self: undefined
   }, "\uC090\uC57D")), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["List"], {
     header: `${post.Comments ? post.Comments.length : 0}댓글`,
     itemLayout: "horizontal",
-    dataSource: post.Comment || [],
+    dataSource: post.Comments || [],
     renderItem: item => __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 59
+        lineNumber: 66
       },
       __self: undefined
     }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Comment"], {
-      author: item.User.nick,
+      author: item.User.nickname,
       avatar: __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Avatar"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 62
+          lineNumber: 69
         },
         __self: undefined
-      }, item.User.nick[0]),
+      }, item.User.nickname[0]),
       content: item.content,
-      datetime: item.createdAt,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 60
+        lineNumber: 67
       },
       __self: undefined
     })),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 54
+      lineNumber: 61
     },
     __self: undefined
   })));
@@ -580,7 +590,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 const Home = ({}) => {
   const {
     isLoggedIn,
-    user
+    me
   } = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useSelector"])(state => state.user);
   const {
     mainPosts
@@ -597,13 +607,13 @@ const Home = ({}) => {
       lineNumber: 20
     },
     __self: undefined
-  }, user ? __jsx("div", {
+  }, isLoggedIn ? __jsx("div", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 21
     },
     __self: undefined
-  }, "\uB85C\uADF8\uC778 \uD588\uC2B5\uB2C8\uB2E4: ", user.nickname) : __jsx("div", {
+  }, "\uB85C\uADF8\uC778 \uD588\uC2B5\uB2C8\uB2E4: ", me.nickname) : __jsx("div", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 21
@@ -700,6 +710,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 const initialState = {
   mainPosts: [{
+    id: 1,
     User: {
       id: 1,
       nickname: 'Jay'
@@ -720,6 +731,7 @@ const initialState = {
   commentAdded: false
 };
 const dummyPost = {
+  id: 2,
   User: {
     id: 1,
     nickname: 'jay'
@@ -729,7 +741,7 @@ const dummyPost = {
 const dummyComment = {
   User: {
     id: 1,
-    nickname: 2
+    nickname: 'Jay'
   },
   createdAt: new Date(),
   content: '더미 댓글입니다.'
@@ -809,7 +821,7 @@ const reducer = (state = initialState, action) => {
       {
         const postIndex = state.mainPosts.findIndex(v => v.id === action.data.postId);
         const post = state.mainPosts[postIndex];
-        const Comments = [...post.Comments, action.data.comment];
+        const Comments = [...post.Comments, dummyComment];
         const mainPosts = [...state.mainPosts];
         mainPosts[postIndex] = _objectSpread({}, post, {
           Comments

@@ -26,12 +26,15 @@ function* watchAddPost() {
 function addCommentAPI(){
     
 }
-
-function* addComment() {
+// ADD_COMMENT_REQUEST에 대한 action 
+function* addComment(action) {
     try{
         yield delay(2000);
         yield put({
-            type: ADD_COMMENT_SUCCESS
+            type: ADD_COMMENT_SUCCESS,
+            data:{
+                postId: action.data.postId
+            }
         }); 
     } catch(e) {
         yield put({
