@@ -23,8 +23,8 @@ const HomeApp = ({Component, store}) => (
     </>
 )
 HomeApp.propTypes= {
-    component: PropTypes.elementType,
-    store: PropTypes.object 
+    Component: PropTypes.elementType.isRequired,
+    store: PropTypes.object.isRequired 
 }
 
 const configureStore = (initialState,options) => {
