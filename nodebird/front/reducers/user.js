@@ -3,6 +3,7 @@ const dummyUser = {
     Post: [],
     Followings: [],
     Followers: [], 
+    id: 1
 };
 
 const initialState={
@@ -31,17 +32,42 @@ export const LOG_OUT_REQUEST = 'LOG_OUT_REQUEST';
 export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
 export const LOG_OUT_FAILURE = 'LOG_OUT_FAILURE';
 
-<<<<<<< HEAD
-export const INCREMENT_NUMBER;
-=======
 export const LOAD_FOLLOW_REQUEST = 'LOAD_FOLLOW_REQUEST';
 export const LOAD_FOLLOW_SUCCESS = 'LOAD_FOLLOW_SUCCESS';
 export const LOAD_FOLLOW_FAILURE = 'LOAD_FOLLOW_FAILURE';
 
+export const FOLLOW_USER_REQUEST = 'FOLLOW_USER_REQUEST';
+export const FOLLOW_USER_SUCCESS = 'FOLLOW_USER_SUCCESS';
+export const FOLLOW_USER_FAILURE = 'FOLLOW_USER_FAILURE';
 
+export const UNFOLLOW_USER_REQUEST = 'UNFOLLOW_USER_REQUEST';
+export const UNFOLLOW_USER_SUCCESS = 'UNFOLLOW_USER_SUCCESS';
+export const UNFOLLOW_USER_FAILURE = 'UNFOLLOW_USER_FAILURE';
 
-export let INCREMENT_NUMBER;
->>>>>>> 2d74aabc780806867f28e4672b918d36f7e4c832
+export const REMOVE_FOLLOWER_REQUEST = 'REMOVE_FOLLOWER_REQUEST';
+export const REMOVE_FOLLOWER_SUCCESS = 'REMOVE_FOLLOWER_SUCCESS';
+export const REMOVE_FOLLOWER_FAILURE = 'REMOVE_FOLLOWER_FAILURE';
+
+export const ADD_POST_TO_ME = 'ADD_POST_TO_ME'; 
+
+export const signUpAction = data => ({
+    type: SIGN_UP_REQUEST,
+    data
+});
+export const signUpSuccess = {
+    type: SIGN_UP_SUCCESS
+}
+export const loginRequestAction = data => ({
+    type: LOG_IN_REQUEST,
+    data
+});
+export const logoutRequestAction = ({
+    type: LOG_OUT_REQUEST 
+}); 
+export const signUpRequestAction = data => ({
+    type: SIGN_UP_REQUEST,
+    data 
+});
 
 export const loginAction = data => {
     return {
@@ -54,37 +80,31 @@ export const loginAction = data => {
 export const logoutAction = {
     type: LOG_OUT_REQUEST,
 }
-// 동적데이터를 전달하는 엑션 개체일 경우 매개변수를 사용한다. 
-export const signUpAction = (data) => {
-    return {
-        type: SIGN_UP_REQUEST,
-        data 
-    };
-}
-const reducer = (state=initialState,action) => {
+
+export default (state=initialState,action) => {
     switch(action.type){
         case LOG_IN_REQUEST:{
             return {
                 ...state,
-<<<<<<< HEAD
-                loginData: action.data,
-                isLoading: true,
-=======
-                isLoading: true,
-                loginData: action.data,
->>>>>>> 2d74aabc780806867f28e4672b918d36f7e4c832
+                isLoggingIn:true,
                 }
         }
         case LOG_IN_SUCCESS: {
             return{
                 ...state,
-<<<<<<< HEAD
-                user: dummyUser,
-=======
-                me: dummyUser,
->>>>>>> 2d74aabc780806867f28e4672b918d36f7e4c832
                 isLoggedIn: true,
-                isLoading: false 
+                isLoading: false,
+                me: dummyUser,
+                isLoading: false,
+            }
+        }
+        case LOG_IN_FAILURE: {
+            return {
+                ...state,
+                isLoggingIn: false,
+                isLoggedIn: false,
+                logInErrorReason: action.error,
+                me: null 
             }
         }
         case LOG_OUT_REQUEST: {
@@ -97,20 +117,29 @@ const reducer = (state=initialState,action) => {
             return {
                 ...state,
                 isLoggedIn: false,
-<<<<<<< HEAD
-                user: null,
-=======
                 me: null,
->>>>>>> 2d74aabc780806867f28e4672b918d36f7e4c832
                 isLoading: false
             }
         }
         case SIGN_UP_REQUEST : {
             return {
                 ...state,
-                signUpData: action.data,
-                isLoading: true,
+                isSigningUp: true, 
             }
+        }
+        case SIGN_UP_SUCCESS : {
+            return{
+                ...state,
+                isSigningUp:false,
+                isSignedUp: true,
+            }
+        }
+        case SIGN_UP_FAILURE : {
+             return {
+                 ...state,
+                 isSigningUp:false,
+                 signUpErrorReason: action.error
+             }
         }
         default: {
             return {
@@ -120,5 +149,3 @@ const reducer = (state=initialState,action) => {
         }
     }
 }
-
-export default reducer;
