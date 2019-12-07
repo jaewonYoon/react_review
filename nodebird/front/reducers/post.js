@@ -5,12 +5,16 @@ const initialState= {
             nickname: 'Jay',
         },
         content: '첫 번째 게시글',
-        img: 'https://images.unsplash.com/photo-1575550590262-4ad1d8738faa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80'
+        img: 'https://images.unsplash.com/photo-1575550590262-4ad1d8738faa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+        Comments: []
     }],
     imagePaths: [], // 미리보기 이미지 경로
     addPostErrorReason: false, //포스트 업로드 실패  
     isAddingPost: false, //포스트 업로드 중
     postAdded: false,
+    isAddingComment: false, 
+    addCommentErrorReason: '', 
+    commentAdded: false
 }
 
 const dummyPost = {
@@ -20,7 +24,14 @@ const dummyPost = {
     },
     content: '나는 더미입니다.'
 }
-
+const dummyComment = {
+    User: {
+        id: 1,
+        nickname:2 
+    },
+    createdAt: new Date(),
+    content: '더미 댓글입니다.'
+}
 export const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 export const ADD_POST_FAILURE = 'ADD_POST_FAILURE';
@@ -102,6 +113,24 @@ const reducer = (state=initialState, action) => {
             }
         }
         case ADD_COMMENT_SUCCESS: {
+            const postIndex = state.mainPosts.findIndex( v=> v.id ===action.data.postId);
+            const post = state.mainPosts[postIndex];
+            const Comments = [...post.Comments, action.data.comment];
+            const mainPosts = [...state.mainPosts];
+            mainPosts[postIndex] = {...post,Comments}; 
+            return {
+                ...state,
+                isAddingComment: false,
+                mainPosts,
+                postAdded: true
+            }
+        }
+        case ADD_COMMENT_FAILURE: {
+            return {
+                ...state,
+                isAddingComment: false,
+                addCommentErrorReason: action.error 
+            }
         }
         default: {
             return {
