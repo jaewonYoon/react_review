@@ -1,4 +1,4 @@
-import {all, fork, takeLatest, call, put ,take} from 'redux-saga/effects';
+import {all, call, fork, takeLatest, takeEvery, call, put ,take} from 'redux-saga/effects';
 import {LOG_IN, LOG_IN_SUCCESS, LOG_IN_FAILURE} from '../reducers/user';
 
 const HELLO_SAGA = 'HELLO_SAGA'; 
@@ -20,15 +20,9 @@ function* login(){
     }
 }
 function* watchLogin() {
-    while(true){
-        yield take(LOG_IN);
-        // put 은 redux의 distpatch와 동일하게 작동하게 된다.
-        // 로그인 액션을 받으면 자동으로 LOG_IN_SUCCESS를 실행하게 된다.  
-        yield put({
-            type: LOG_IN_SUCCESS,
-        })
-    }
+    yield takeEvery(LOG_IN, login);
 }
+
 export default function* userSaga() {
     yield all([
         watchLogin(),
