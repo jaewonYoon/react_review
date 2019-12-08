@@ -43,15 +43,14 @@ function* logout() {
 function* watchLogout() {
     yield takeLatest(LOG_OUT_REQUEST, logout);
 }
-function* signUpAPI() {
-    return axios.post('/login');
+function* signUpAPI(signUpData) {
+    return axios.post('http://localhost:3002/api/user', signUpData);
 }
 
-function* signUp() {
+function* signUp(action) {
     try{
-        yield call(signUpAPI);
-        yield delay(2000);
-        throw new Error('에러에러에러');
+        // 첫번째 인자는 함수, 두번쨰 인자는 첫번째 함수 인자로 전달된다. 
+        yield call(signUpAPI,action.data);
         yield put({
             type:SIGN_UP_SUCCESS,
         });

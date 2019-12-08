@@ -17,41 +17,43 @@ export const useInput = (initValue = null) => {
 const Signup = () => {
     const [userCredentials, setCredentials]= useState({
         id: '',
-        nick: '', 
+        nickname: '', 
         email: '',
-        pass: '',
-        pass_chk :'',
+        password: '',
+        password_chk :'',
         term: false, 
     })
-    const {id,nick,pass} = userCredentials;
+    const {id,nickname,password,password_chk, term} = userCredentials;
     const [passwordError, setPasswordError] = useState(false);
     const [termError, setTermError] = useState(false);
     const dispatch = useDispatch();
     const {isSigningUp, me} = useSelector((state) => state.user);
     useEffect( () => {
-        alert('로그인 했으니 메인페이지로 이동합니다. ')
-        Router.push('/')
+        if(me) {
+            alert('로그인 했으니 메인페이지로 이동합니다. ')
+            Router.push('/')
+        }
     },[me && me.id]);
 
-    const onSubmit = (e) => {
+    const onSubmit = useCallback((e) => {
         e.preventDefault();
-        const {pass_chk, term} = userCredentials;
-        if(pass_chk !== pass){
+        if(password_chk !== password){
             setPasswordError(true);
             return false;  
-        } 
+        } else setPasswordError(false); 
         if(!term){
             setTermError(true); 
             return false; 
         }
         setTermError(false); 
         setPasswordError(false);
+        console.log('11');
         dispatch(signUpRequestAction({
-            id,
-            nick,
-            pass
+            userId: id,
+            nickname,
+            password
         }))
-    }
+    },[id,nickname,password,password_chk, term]);
     const onChange = (e) => {
         const {name,value} = e.target;
         if(name==='term'){
@@ -69,24 +71,24 @@ const Signup = () => {
                     <Input name="id" required onChange={onChange}/>
                 </div>
                 <div>
-                    <label htmlFor="nick">닉네임</label>
+                    <label htmlFor="nickname">닉네임</label>
                     <br/>
-                    <Input name="nick" required onChange={onChange}/>
+                    <Input name="nickname" required onChange={onChange}/>
                 </div>
                 <div>
-                    <label htmlFor="pass">비밀번호</label>
+                    <label htmlFor="password">비밀번호</label>
                     <br/>
-                    <Input name="pass" type="password" required onChange={onChange}/>
+                    <Input name="password" type="password" required onChange={onChange}/>
                 </div>
                 <div>
-                    <label htmlFor="pass_chk">비밀번호 확인</label>
+                    <label htmlFor="password_chk">비밀번호 확인</label>
                     {
                         passwordError ? 
                         <p>비밀번호가 일치하지 않습니다.</p>:
                         null
                     }
                     <br/>
-                    <Input name="pass_chk" type="password" required onChange={onChange}/>
+                    <Input name="password_chk" type="password" required onChange={onChange}/>
                 </div>
                 <div>
                     <Checkbox name="term"  required checked={userCredentials.term} onChange={onChange}>회원가입에 동의합니다.</Checkbox>

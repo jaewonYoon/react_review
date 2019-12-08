@@ -2738,16 +2738,18 @@ const Signup = () => {
     1: setCredentials
   } = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])({
     id: '',
-    nick: '',
+    nickname: '',
     email: '',
-    pass: '',
-    pass_chk: '',
+    password: '',
+    password_chk: '',
     term: false
   });
   const {
     id,
-    nick,
-    pass
+    nickname,
+    password,
+    password_chk,
+    term
   } = userCredentials;
   const {
     0: passwordError,
@@ -2763,21 +2765,18 @@ const Signup = () => {
     me
   } = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__["useSelector"])(state => state.user);
   Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(() => {
-    alert('로그인 했으니 메인페이지로 이동합니다. ');
-    next_router__WEBPACK_IMPORTED_MODULE_9___default.a.push('/');
+    if (me) {
+      alert('로그인 했으니 메인페이지로 이동합니다. ');
+      next_router__WEBPACK_IMPORTED_MODULE_9___default.a.push('/');
+    }
   }, [me && me.id]);
-
-  const onSubmit = e => {
+  const onSubmit = Object(react__WEBPACK_IMPORTED_MODULE_7__["useCallback"])(e => {
     e.preventDefault();
-    const {
-      pass_chk,
-      term
-    } = userCredentials;
 
-    if (pass_chk !== pass) {
+    if (password_chk !== password) {
       setPasswordError(true);
       return false;
-    }
+    } else setPasswordError(false);
 
     if (!term) {
       setTermError(true);
@@ -2786,12 +2785,13 @@ const Signup = () => {
 
     setTermError(false);
     setPasswordError(false);
+    console.log('11');
     dispatch(Object(_reducers_user__WEBPACK_IMPORTED_MODULE_11__["signUpRequestAction"])({
-      id,
-      nick,
-      pass
+      userId: id,
+      nickname,
+      password
     }));
-  };
+  }, [id, nickname, password, password_chk, term]);
 
   const onChange = e => {
     const {
@@ -2815,26 +2815,26 @@ const Signup = () => {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 65
+      lineNumber: 67
     },
     __self: undefined
   }, __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 68
     },
     __self: undefined
   }, __jsx("label", {
     htmlFor: "id",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 69
     },
     __self: undefined
   }, "\uC544\uC774\uB514"), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 68
+      lineNumber: 70
     },
     __self: undefined
   }), __jsx(antd__WEBPACK_IMPORTED_MODULE_8__["Input"], {
@@ -2843,105 +2843,105 @@ const Signup = () => {
     onChange: onChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69
-    },
-    __self: undefined
-  })), __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
       lineNumber: 71
     },
     __self: undefined
-  }, __jsx("label", {
-    htmlFor: "nick",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 72
-    },
-    __self: undefined
-  }, "\uB2C9\uB124\uC784"), __jsx("br", {
+  })), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 73
     },
     __self: undefined
-  }), __jsx(antd__WEBPACK_IMPORTED_MODULE_8__["Input"], {
-    name: "nick",
-    required: true,
-    onChange: onChange,
+  }, __jsx("label", {
+    htmlFor: "nickname",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 74
     },
     __self: undefined
-  })), __jsx("div", {
+  }, "\uB2C9\uB124\uC784"), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 75
+    },
+    __self: undefined
+  }), __jsx(antd__WEBPACK_IMPORTED_MODULE_8__["Input"], {
+    name: "nickname",
+    required: true,
+    onChange: onChange,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 76
     },
     __self: undefined
-  }, __jsx("label", {
-    htmlFor: "pass",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 77
-    },
-    __self: undefined
-  }, "\uBE44\uBC00\uBC88\uD638"), __jsx("br", {
+  })), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 78
     },
     __self: undefined
-  }), __jsx(antd__WEBPACK_IMPORTED_MODULE_8__["Input"], {
-    name: "pass",
-    type: "password",
-    required: true,
-    onChange: onChange,
+  }, __jsx("label", {
+    htmlFor: "password",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 79
     },
     __self: undefined
-  })), __jsx("div", {
+  }, "\uBE44\uBC00\uBC88\uD638"), __jsx("br", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 81
-    },
-    __self: undefined
-  }, __jsx("label", {
-    htmlFor: "pass_chk",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 82
-    },
-    __self: undefined
-  }, "\uBE44\uBC00\uBC88\uD638 \uD655\uC778"), passwordError ? __jsx("p", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 85
-    },
-    __self: undefined
-  }, "\uBE44\uBC00\uBC88\uD638\uAC00 \uC77C\uCE58\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.") : null, __jsx("br", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 88
+      lineNumber: 80
     },
     __self: undefined
   }), __jsx(antd__WEBPACK_IMPORTED_MODULE_8__["Input"], {
-    name: "pass_chk",
+    name: "password",
     type: "password",
     required: true,
     onChange: onChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 89
+      lineNumber: 81
     },
     __self: undefined
   })), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
+      lineNumber: 83
+    },
+    __self: undefined
+  }, __jsx("label", {
+    htmlFor: "password_chk",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 84
+    },
+    __self: undefined
+  }, "\uBE44\uBC00\uBC88\uD638 \uD655\uC778"), passwordError ? __jsx("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 87
+    },
+    __self: undefined
+  }, "\uBE44\uBC00\uBC88\uD638\uAC00 \uC77C\uCE58\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.") : null, __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 90
+    },
+    __self: undefined
+  }), __jsx(antd__WEBPACK_IMPORTED_MODULE_8__["Input"], {
+    name: "password_chk",
+    type: "password",
+    required: true,
+    onChange: onChange,
+    __source: {
+      fileName: _jsxFileName,
       lineNumber: 91
+    },
+    __self: undefined
+  })), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 93
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_8__["Checkbox"], {
@@ -2951,7 +2951,7 @@ const Signup = () => {
     onChange: onChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 92
+      lineNumber: 94
     },
     __self: undefined
   }, "\uD68C\uC6D0\uAC00\uC785\uC5D0 \uB3D9\uC758\uD569\uB2C8\uB2E4."), termError ? __jsx("span", {
@@ -2960,13 +2960,13 @@ const Signup = () => {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 95
+      lineNumber: 97
     },
     __self: undefined
   }, "\uC57D\uAD00\uC5D0 \uB3D9\uC758\uD574\uC8FC\uC138\uC694.") : null), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 99
+      lineNumber: 101
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_8__["Button"], {
@@ -2975,7 +2975,7 @@ const Signup = () => {
     loading: isSigningUp,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 100
+      lineNumber: 102
     },
     __self: undefined
   }, "\uAC00\uC785\uD558\uAE30"))));
@@ -3592,15 +3592,14 @@ function* watchLogout() {
   yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["takeLatest"])(_reducers_user__WEBPACK_IMPORTED_MODULE_2__["LOG_OUT_REQUEST"], logout);
 }
 
-function* signUpAPI() {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/login');
+function* signUpAPI(signUpData) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('http://localhost:3002/api/user', signUpData);
 }
 
-function* signUp() {
+function* signUp(action) {
   try {
-    yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(signUpAPI);
-    yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["delay"])(2000);
-    throw new Error('에러에러에러');
+    // 첫번째 인자는 함수, 두번쨰 인자는 첫번째 함수 인자로 전달된다. 
+    yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(signUpAPI, action.data);
     yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
       type: _reducers_user__WEBPACK_IMPORTED_MODULE_2__["SIGN_UP_SUCCESS"]
     });

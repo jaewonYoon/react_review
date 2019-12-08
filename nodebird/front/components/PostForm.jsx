@@ -8,7 +8,6 @@ const PostForm = () => {
     const {imagePaths, isAddingPost, postAdded} = useSelector( (state) => state.post); 
     
     useEffect( () => {
-        console.log('111');
         setText('');
     },[postAdded===true]);
     const onSubmitForm = useCallback((e) => {
