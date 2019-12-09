@@ -31,7 +31,7 @@ app.use(expressSession({
         secure: false, // https를 쓸 때 true 
     }
 }));
-app.use(passport.initialize()); //passport 는 expressSessio을 사용하기 때문에 미들웨어 밑에 적어줘야한다. 
+app.use(passport.initialize()); //passport 는 expressSession을 사용하기 때문에 미들웨어 밑에 적어줘야한다. 
 app.use(passport.session());
 
 

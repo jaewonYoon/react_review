@@ -11,7 +11,7 @@ module.exports = () => {
     }, async (userId, password, done) => {
         try{
             //어떤 사람을 로그인 시킬 것인가. 
-            const user = await db.User.findOne({where: userId});
+            const user = await db.User.findOne({where: {userId}});
             if(!user) {
                 return done(null, false, {reason: '존재하지 않는 사용자입니다.'}); 
                 //done 의 첫번째 인자는 서버쪽 에러 , 두번쨰는 성공했을때 , 세번쨰는 서버쪽 에러가 아니라 

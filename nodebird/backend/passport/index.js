@@ -5,6 +5,7 @@ const local = require('./local');
 module.exports = () => {
     // 가벼운 정보로 변환해서 서버에 저장 
     passport.serializeUser( (user,done) => { // 서버쪽에 [{id:3, cookie: 'asdfgh'}]
+        console.log(`user: ${user}`);
         return done(null, user.id); //return 안해줘도 상관없음 
     });
 
