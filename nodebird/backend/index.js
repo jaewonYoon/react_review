@@ -15,7 +15,7 @@ const postsAPIRouter = require('./routes/posts');
 dotenv.config(); 
 const app = express();
 db.sequelize.sync();
-passportConfig(); 
+passportConfig();  // passport/index.js에서 정의한 Strategy 적용 
 
 app.use(morgan('dev'));
 app.use(express.json());

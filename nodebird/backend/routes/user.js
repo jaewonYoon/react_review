@@ -35,7 +35,6 @@ router.get('/:id', (req,res) => {// 남의 정보 가져오는 것  req.params.i
 });
 router.post('/login', (req,res,next) => {
     passport.authenticate('local', (err, user, info) => {// done 의 1,2,3 번째 인자 
-        console.log(err, user, info);
         if(err){
             console.error(err);
             next(err); 
@@ -48,7 +47,6 @@ router.post('/login', (req,res,next) => {
             if(loginErr) {
                 return next(loginErr);
             }
-            console.log('login success', user);
             const filteredUser = Object.assign({} ,user.toJSON());
             delete filteredUser.password;
             return res.json(filteredUser);  
