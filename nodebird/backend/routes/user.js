@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../models');
+const passport = require('passport');
 const bcrypt = require('bcrypt');
 
 const router = express.Router();
@@ -32,8 +33,27 @@ router.post('/',async(req,res,next) => {
 router.get('/:id', (req,res) => {// 남의 정보 가져오는 것  req.params.id로 가져올 수 있습니다. 
 
 });
-router.post('/login', (req,res) => {
-
+router.post('/login', (req,res,next) => {
+    passport.authenticate('local', (err, user, info) => {// done 의 1,2,3 번째 인자 
+        console.log(err, user, info);
+        if(err){
+            console.error(err);
+            next(err); 
+        }
+        if(info) {
+            return res.status(401).send(info.reason);
+        }
+        // req.login 은 local의 passport.serializeUser가 실행된다. 
+        return req.login(user,(loginErr) => {
+            if(loginErr) {
+                return next(loginErr);
+            }
+            console.log('login success', user);
+            const filteredUser = Object.assign({} ,user.toJSON());
+            delete filteredUser.password;
+            return res.json(filteredUser);  
+        })
+    })(req,res,next) //kakao, naver 등등 
 });
 router.get('/:id/follow', (req,res) => { // 몇번 유저팔로우를 가져온다. 
 

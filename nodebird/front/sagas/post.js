@@ -1,8 +1,11 @@
+import axios from 'axios'; 
 import {all,fork, put, takeEvery, takeLatest, delay} from 'redux-saga/effects'
 import { 
     ADD_POST_SUCCESS, ADD_POST_FAILURE, ADD_POST_REQUEST,
     ADD_COMMENT_SUCCESS, ADD_COMMENT_REQUEST, ADD_COMMENT_FAILURE
 } from '../reducers/post';
+
+axios.defaults.baseURL = 'http://localhost:3002/api'; 
 
 function* addPostAPI(){
     
