@@ -20,7 +20,10 @@ passportConfig();  // passport/index.js에서 정의한 Strategy 적용
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(cors());
+app.use(cors({
+    origin: true,
+    credentials: true 
+}));
 app.use(cookieParser(process.env.COOKIE_SECRET)); //쿠키 암호화 값 같이 넣어주기 
 app.use(expressSession({
     resave: false, //매번 세션 강제 저장 
@@ -29,7 +32,8 @@ app.use(expressSession({
     cookie: {
         httpOnly: true, //자바스크립트로 쿠키 접근 넘김 
         secure: false, // https를 쓸 때 true 
-    }
+    },
+    name: 'gid:4025'
 }));
 app.use(passport.initialize()); //passport 는 expressSession을 사용하기 때문에 미들웨어 밑에 적어줘야한다. 
 app.use(passport.session());
