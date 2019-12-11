@@ -439,46 +439,10 @@ const UserProfile = () => {
     me
   } = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(state => state.user);
   return __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Card"], {
-    actions: [__jsx("div", {
-      key: "twit",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 15
-      },
-      __self: undefined
-    }, "\uCA31\uC9F9", __jsx("br", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 15
-      },
-      __self: undefined
-    }), me.Post.length), __jsx("div", {
-      key: "following",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 16
-      },
-      __self: undefined
-    }, "\uD314\uB85C\uC789", __jsx("br", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 16
-      },
-      __self: undefined
-    }), me.Followings.length), __jsx("div", {
-      key: "follower",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 17
-      },
-      __self: undefined
-    }, "\uD314\uB85C\uC6CC", __jsx("br", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 17
-      },
-      __self: undefined
-    }), me.Followers.length)],
+    actions: [// <div key="twit">쨱짹<br/>{me.Post.length}</div>,
+      // <div key="following">팔로잉<br/>{me.Followings.length}</div>,
+      // <div key="follower">팔로워<br/>{me.Followers.length}</div>
+    ],
     __source: {
       fileName: _jsxFileName,
       lineNumber: 13
@@ -3376,7 +3340,7 @@ const logoutAction = {
         return _objectSpread({}, state, {
           isLoggedIn: true,
           isLoading: false,
-          me: dummyUser,
+          me: action.data,
           isLoading: false
         });
       }
@@ -3557,17 +3521,19 @@ axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.baseURL = 'http://localhos
 function loginAPI(loginData) {
   console.log(loginData); //서버에 API 요청을 보내는 부분 
 
-  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/user/login', loginData);
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/user/login', loginData, {
+    withCredentials: true
+  });
 }
 
 function* login(action) {
   try {
-    yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["delay"])(2000);
-    yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(loginAPI, action.data); //실패하면 catch(e)로 
+    const result = yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(loginAPI, action.data); //실패하면 catch(e)로 
 
     yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])({
       //loginAPI 성공 
-      type: _reducers_user__WEBPACK_IMPORTED_MODULE_2__["LOG_IN_SUCCESS"]
+      type: _reducers_user__WEBPACK_IMPORTED_MODULE_2__["LOG_IN_SUCCESS"],
+      data: result.data
     });
   } catch (e) {
     console.error(e);

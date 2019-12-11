@@ -663,7 +663,7 @@ const logoutAction = {
         return _objectSpread({}, state, {
           isLoggedIn: true,
           isLoading: false,
-          me: dummyUser,
+          me: action.data,
           isLoading: false
         });
       }

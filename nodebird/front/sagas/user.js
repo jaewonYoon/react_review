@@ -12,14 +12,16 @@ axios.defaults.baseURL = 'http://localhost:3002/api';
 function loginAPI(loginData) {
     console.log(loginData);
     //서버에 API 요청을 보내는 부분 
-    return axios.post('/user/login', loginData);
+    return axios.post('/user/login', loginData, {
+        withCredentials:true
+    });
 }
 function* login(action){
     try{
-        yield delay(2000);
-        yield call(loginAPI, action.data); //실패하면 catch(e)로 
+        const result = yield call(loginAPI, action.data); //실패하면 catch(e)로 
         yield put({ //loginAPI 성공 
-            type: LOG_IN_SUCCESS
+            type: LOG_IN_SUCCESS,
+            data: result.data
         })
     } catch(e) {
         console.error(e); 
