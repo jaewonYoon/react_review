@@ -6,26 +6,25 @@ import {useInput} from '../pages/signup';
 import {loginRequestAction} from '../reducers/user';
 
 const LoginForm = () => {
-    const [id,onChangeId] = useInput(''); 
+    const [userId,onChangeId] = useInput(''); 
     const [password,onChangePassword] = useInput('');
-    const {isLoggedIn} = useSelector(state => state.user); 
+    const {isLoggingIn} = useSelector(state => state.user); 
     const dispatch= useDispatch(); 
     
     const onSubmitForm = useCallback((e) => {
         e.preventDefault();
         dispatch(loginRequestAction({
-            data: {
-                id, password 
-            }
+                userId, 
+                password 
         }));
-    },[id,password]);
+    },[userId,password]);
 
     return( 
         <Form style={{margin:'10px'}} onSubmit = {onSubmitForm}>
             <div>
-                <label htmlFor="user-id">아이디</label>
+                <label htmlFor="userId">아이디</label>
                 <br/>
-                <Input name="user-id" value={id} onChange={onChangeId} required/>
+                <Input name="userId" value={userId} onChange={onChangeId} required/>
             </div>
             <div>
                 <label htmlFor="user-password">비밀번호</label>
@@ -34,7 +33,7 @@ const LoginForm = () => {
                 onChange={onChangePassword} />
             </div>
             <div style={{marginTop: '10px'}}>
-                <Button type="primary" htmlType="submit" loading={isLoggedIn}>로그인</Button>
+                <Button type="primary" htmlType="submit" loading={isLoggingIn}>로그인</Button>
                 <Link href="/signup"><a><Button>회원가입</Button></a></Link>
             </div>
         </Form>

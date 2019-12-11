@@ -7,14 +7,17 @@ import {
 } from '../reducers/user';
 // take은 기다리고 자동으로 .next()함수를 호출해주는 것, put은 dispatch해주는 것 
 
-function loginAPI() {
+axios.defaults.baseURL = 'http://localhost:3002/api'; 
+
+function loginAPI(loginData) {
+    console.log(loginData);
     //서버에 API 요청을 보내는 부분 
-    // return axios.post('/login');
+    return axios.post('/user/login', loginData);
 }
-function* login(){
+function* login(action){
     try{
         yield delay(2000);
-        yield call(loginAPI); //실패하면 catch(e)로 
+        yield call(loginAPI, action.data); //실패하면 catch(e)로 
         yield put({ //loginAPI 성공 
             type: LOG_IN_SUCCESS
         })
@@ -26,7 +29,7 @@ function* login(){
     }
 }
 function* watchLogin() {
-    yield takeEvery(LOG_IN_REQUEST, login);
+    yield takeEvery(LOG_IN_REQUEST, login); //disaptch에서 action으로 들어가는 것 위의 login(action)으로 전달 됨 
 }
 
 function* logout() {
@@ -44,7 +47,7 @@ function* watchLogout() {
     yield takeLatest(LOG_OUT_REQUEST, logout);
 }
 function* signUpAPI(signUpData) {
-    return axios.post('http://localhost:3002/api/user', signUpData);
+    return axios.post('/user', signUpData);
 }
 
 function* signUp(action) {
