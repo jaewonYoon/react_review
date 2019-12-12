@@ -5,13 +5,16 @@ import {useSelector, useDispatch} from 'react-redux';
 
 import LoginForm from './LoginForm';
 import UserProfile from './UserProfile';
-import {loginAction} from '../reducers/user';
-
+import {loginAction,LOAD_USER_REQUEST} from '../reducers/user';
 const AppLayout = ({children}) => {
     const dispatch = useDispatch(); 
-    const {isLoggedIn} = useSelector((state) => state.user); 
+    const {me} = useSelector((state) => state.user); 
     useEffect( () => {
-        // dispatch(loginAction);
+        if(!me) {
+        dispatch({
+            type: LOAD_USER_REQUEST 
+        })
+     }   
     },[]);
     return (
         <div>
@@ -24,7 +27,7 @@ const AppLayout = ({children}) => {
             </Menu>
             <Row gutter={10}>
                 <Col xs={24} md={6} >
-                    {isLoggedIn ? 
+                    {me ? 
                     <UserProfile/>:
                      <LoginForm/>}
                 </Col>

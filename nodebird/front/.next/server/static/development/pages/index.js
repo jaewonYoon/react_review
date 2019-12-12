@@ -358,10 +358,10 @@ const PostForm = () => {
     dispatch({
       type: _reducers_post__WEBPACK_IMPORTED_MODULE_3__["ADD_POST_REQUEST"],
       data: {
-        text
+        content: text
       }
     });
-  }, []);
+  }, [text]);
   const onChangeText = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(e => {
     setText(e.target.value);
   });
@@ -588,7 +588,6 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 const Home = ({}) => {
   const {
-    isLoggedIn,
     me
   } = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useSelector"])(state => state.user);
   const {
@@ -606,22 +605,10 @@ const Home = ({}) => {
       lineNumber: 20
     },
     __self: undefined
-  }, isLoggedIn ? __jsx("div", {
+  }, me && __jsx(_components_PostForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 21
-    },
-    __self: undefined
-  }, "\uB85C\uADF8\uC778 \uD588\uC2B5\uB2C8\uB2E4: ", me.nickname) : __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 21
-    },
-    __self: undefined
-  }, "\uB85C\uADF8\uC544\uC6C3 \uD588\uC2B5\uB2C8\uB2E4."), isLoggedIn && __jsx(_components_PostForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 22
     },
     __self: undefined
   }), mainPosts.map(c => {
@@ -630,7 +617,7 @@ const Home = ({}) => {
       post: c,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 25
+        lineNumber: 24
       },
       __self: undefined
     });
@@ -794,7 +781,7 @@ const reducer = (state = initialState, action) => {
       {
         return _objectSpread({}, state, {
           isAddingPost: false,
-          mainPosts: [dummyPost, ...state.mainPosts],
+          mainPosts: [action.data, ...state.mainPosts],
           postAdded: true
         });
       }
@@ -855,7 +842,7 @@ const reducer = (state = initialState, action) => {
 /*!**************************!*\
   !*** ./reducers/user.js ***!
   \**************************/
-/*! exports provided: SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE, LOG_IN_REQUEST, LOG_IN_SUCCESS, LOG_IN_FAILURE, LOG_OUT_REQUEST, LOG_OUT_SUCCESS, LOG_OUT_FAILURE, LOAD_FOLLOW_REQUEST, LOAD_FOLLOW_SUCCESS, LOAD_FOLLOW_FAILURE, FOLLOW_USER_REQUEST, FOLLOW_USER_SUCCESS, FOLLOW_USER_FAILURE, UNFOLLOW_USER_REQUEST, UNFOLLOW_USER_SUCCESS, UNFOLLOW_USER_FAILURE, REMOVE_FOLLOWER_REQUEST, REMOVE_FOLLOWER_SUCCESS, REMOVE_FOLLOWER_FAILURE, ADD_POST_TO_ME, signUpAction, signUpSuccess, loginRequestAction, logoutRequestAction, signUpRequestAction, loginAction, logoutAction, default */
+/*! exports provided: SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE, LOG_IN_REQUEST, LOG_IN_SUCCESS, LOG_IN_FAILURE, LOG_OUT_REQUEST, LOG_OUT_SUCCESS, LOG_OUT_FAILURE, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAILURE, LOAD_FOLLOW_REQUEST, LOAD_FOLLOW_SUCCESS, LOAD_FOLLOW_FAILURE, FOLLOW_USER_REQUEST, FOLLOW_USER_SUCCESS, FOLLOW_USER_FAILURE, UNFOLLOW_USER_REQUEST, UNFOLLOW_USER_SUCCESS, UNFOLLOW_USER_FAILURE, REMOVE_FOLLOWER_REQUEST, REMOVE_FOLLOWER_SUCCESS, REMOVE_FOLLOWER_FAILURE, ADD_POST_TO_ME, signUpAction, signUpSuccess, loginRequestAction, logoutRequestAction, signUpRequestAction, loginAction, logoutAction, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -869,6 +856,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_OUT_REQUEST", function() { return LOG_OUT_REQUEST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_OUT_SUCCESS", function() { return LOG_OUT_SUCCESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_OUT_FAILURE", function() { return LOG_OUT_FAILURE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_USER_REQUEST", function() { return LOAD_USER_REQUEST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_USER_SUCCESS", function() { return LOAD_USER_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_USER_FAILURE", function() { return LOAD_USER_FAILURE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_FOLLOW_REQUEST", function() { return LOAD_FOLLOW_REQUEST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_FOLLOW_SUCCESS", function() { return LOAD_FOLLOW_SUCCESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_FOLLOW_FAILURE", function() { return LOAD_FOLLOW_FAILURE; });
@@ -954,6 +944,9 @@ const LOG_IN_FAILURE = 'LOG_IN_FAILURE';
 const LOG_OUT_REQUEST = 'LOG_OUT_REQUEST';
 const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
 const LOG_OUT_FAILURE = 'LOG_OUT_FAILURE';
+const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
+const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
+const LOAD_USER_FAILURE = 'LOAD_USER_FAILURE';
 const LOAD_FOLLOW_REQUEST = 'LOAD_FOLLOW_REQUEST';
 const LOAD_FOLLOW_SUCCESS = 'LOAD_FOLLOW_SUCCESS';
 const LOAD_FOLLOW_FAILURE = 'LOAD_FOLLOW_FAILURE';
@@ -1028,7 +1021,7 @@ const logoutAction = {
     case LOG_OUT_REQUEST:
       {
         return _objectSpread({}, state, {
-          isLoading: true
+          isLoggingOut: true
         });
       }
 
@@ -1036,9 +1029,26 @@ const logoutAction = {
       {
         return _objectSpread({}, state, {
           isLoggedIn: false,
-          me: null,
-          isLoading: false
+          isLoggingOut: false,
+          me: null
         });
+      }
+
+    case LOAD_USER_REQUEST:
+      {
+        return _objectSpread({}, state);
+      }
+
+    case LOAD_USER_SUCCESS:
+      {
+        return _objectSpread({}, state, {
+          me: action.data
+        });
+      }
+
+    case LOAD_USER_FAILURE:
+      {
+        return _objectSpread({}, state);
       }
 
     case SIGN_UP_REQUEST:

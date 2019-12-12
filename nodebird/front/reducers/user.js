@@ -32,6 +32,10 @@ export const LOG_OUT_REQUEST = 'LOG_OUT_REQUEST';
 export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
 export const LOG_OUT_FAILURE = 'LOG_OUT_FAILURE';
 
+export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
+export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
+export const LOAD_USER_FAILURE = 'LOAD_USER_FAILURE';
+
 export const LOAD_FOLLOW_REQUEST = 'LOAD_FOLLOW_REQUEST';
 export const LOAD_FOLLOW_SUCCESS = 'LOAD_FOLLOW_SUCCESS';
 export const LOAD_FOLLOW_FAILURE = 'LOAD_FOLLOW_FAILURE';
@@ -110,16 +114,32 @@ export default (state=initialState,action) => {
         case LOG_OUT_REQUEST: {
             return {
                 ...state,
-                isLoading: true,
+                isLoggingOut: true,
             }
         }
         case LOG_OUT_SUCCESS:{
             return {
                 ...state,
                 isLoggedIn: false,
+                isLoggingOut: false,
                 me: null,
-                isLoading: false
             }
+        }
+        case LOAD_USER_REQUEST : {
+            return {
+                ...state,
+            }
+        }
+        case LOAD_USER_SUCCESS : {
+            return{
+                ...state,
+                me: action.data
+            }
+        }
+        case LOAD_USER_FAILURE : {
+             return {
+                 ...state,
+             }
         }
         case SIGN_UP_REQUEST : {
             return {

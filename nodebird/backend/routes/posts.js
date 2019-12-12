@@ -1,9 +1,15 @@
 const express = require('express');
-
 const router = express.Router();
+const db = require('../models'); 
 
-router.get('/', (req,res) => {
-
+router.get('/', async(req,res,next) => { //GET /api/posts
+    try{
+        const posts = await db.Post.findAll({});     
+        res.json(posts);
+    }catch(e){
+        console.error(e);
+        next(e);
+    }
 });
 
 module.exports = router; 

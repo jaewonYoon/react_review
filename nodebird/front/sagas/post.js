@@ -1,19 +1,23 @@
-import axios from 'axios'; 
 import {all,fork, put, takeEvery, takeLatest, delay} from 'redux-saga/effects'
+import axios from 'axios'; 
 import { 
     ADD_POST_SUCCESS, ADD_POST_FAILURE, ADD_POST_REQUEST,
     ADD_COMMENT_SUCCESS, ADD_COMMENT_REQUEST, ADD_COMMENT_FAILURE
 } from '../reducers/post';
 
-axios.defaults.baseURL = 'http://localhost:3002/api'; 
 
-function* addPostAPI(){
-    
+function* addPostAPI(postData){
+    return axios.post('/post',postData, {
+        withCredentials: true, 
+    });
+
 }
-function* addPost() {
+function* addPost(action) {
     try{
+        const result = yield call(addPostAPI, action.data) //addPostAPI의 postData 로 들어간다.
         yield put({
             type: ADD_POST_SUCCESS,
+            data: result.data 
         })
     } catch(e){ 
         yield put({
@@ -25,6 +29,30 @@ function* addPost() {
 function* watchAddPost() {
     yield takeLatest(ADD_POST_REQUEST, addPost);
 }
+
+
+function* loadMainPostsAPI(){
+    return axios.get('/posts');
+
+}
+function* loadMainPosts() {
+    try{
+        const result = yield call(loadMainPostsAPI) //loadMainPostAPI의 postData 로 들어간다.
+        yield put({
+            type: LOAD_MAIN_POSTS_SUCCESS,
+            data: result.data 
+        })
+    } catch(e){ 
+        yield put({
+            type:LOAD_MAIN_POSTS_FAILURE,
+            error: e
+        })
+    }
+}
+function* watchloadMainPosts() {
+    yield takeLatest(LOAD_MAIN_POSTS_REQUEST, loadMainPosts);
+}
+
 
 function addCommentAPI(){
     
@@ -54,6 +82,7 @@ function* watchAddComment(){
 export default function* postSaga() {
     yield all([
         fork(watchAddPost),
-        fork(watchAddComment)
+        fork(watchloadMainPosts)
+        fork(watchAddComment),
     ]);
 }

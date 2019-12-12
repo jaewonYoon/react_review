@@ -6,7 +6,7 @@ import {loginAction, logoutAction} from '../reducers/user';
 // 메인화면 루트 파일 next는 import react를 하지 않아도 된다.  
 
 const Home = ({}) => {
-    const {isLoggedIn,me} = useSelector( (state) =>state.user);
+    const {me} = useSelector( (state) =>state.user);
     const {mainPosts} = useSelector( (state) => state.post);
     // const {isLoggedIn, user} = useSelector(state => state.user);
     //useEffect할 때 [] 안에 아무것도 없다면 componentDidMount와 같음 
@@ -18,8 +18,7 @@ const Home = ({}) => {
     },[]);
     return(
         <div>
-            {isLoggedIn ? <div>로그인 했습니다: {me.nickname}</div> : <div>로그아웃 했습니다.</div>}
-            {isLoggedIn && <PostForm />}
+            {me && <PostForm />}
             {mainPosts.map( (c) => {
                 return(
                     <PostCard key={c} post={c}/>
