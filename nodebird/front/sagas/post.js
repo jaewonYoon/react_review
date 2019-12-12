@@ -2,7 +2,8 @@ import {all,fork, put, takeEvery, takeLatest, delay} from 'redux-saga/effects'
 import axios from 'axios'; 
 import { 
     ADD_POST_SUCCESS, ADD_POST_FAILURE, ADD_POST_REQUEST,
-    ADD_COMMENT_SUCCESS, ADD_COMMENT_REQUEST, ADD_COMMENT_FAILURE
+    ADD_COMMENT_SUCCESS, ADD_COMMENT_REQUEST, ADD_COMMENT_FAILURE,
+    LOAD_MAIN_POSTS_SUCCESS, LOAD_MAIN_POSTS_REQUEST, LOAD_MAIN_POSTS_FAILURE
 } from '../reducers/post';
 
 
@@ -82,7 +83,7 @@ function* watchAddComment(){
 export default function* postSaga() {
     yield all([
         fork(watchAddPost),
-        fork(watchloadMainPosts)
+        fork(watchloadMainPosts),
         fork(watchAddComment),
     ]);
 }

@@ -577,14 +577,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_PostCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/PostCard */ "./components/PostCard.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _reducers_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../reducers/user */ "./reducers/user.js");
+/* harmony import */ var _reducers_post__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../reducers/post */ "./reducers/post.js");
 var _jsxFileName = "C:\\Users\\jaewon\\Desktop\\web\\react_review\\nodebird\\front\\pages\\index.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-
  // 메인화면 루트 파일 next는 import react를 하지 않아도 된다.  
+
+
 
 const Home = ({}) => {
   const {
@@ -596,8 +597,11 @@ const Home = ({}) => {
   //useEffect할 때 [] 안에 아무것도 없다면 componentDidMount와 같음 
 
   const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useDispatch"])();
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {// 첫번째 렌더링 될 때 이 dispatch도 함께 되는 것 
-    // dispatch(loginAction);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    // 첫번째 렌더링 될 때 이 dispatch도 함께 되는 것 
+    dispatch({
+      type: _reducers_post__WEBPACK_IMPORTED_MODULE_4__["LOAD_MAIN_POSTS_REQUEST"]
+    });
   }, []);
   return __jsx("div", {
     __source: {
@@ -632,7 +636,7 @@ const Home = ({}) => {
 /*!**************************!*\
   !*** ./reducers/post.js ***!
   \**************************/
-/*! exports provided: ADD_POST_REQUEST, ADD_POST_SUCCESS, ADD_POST_FAILURE, LOAD_HASHTAG_POSTS_REQUEST, LOAD_HASHTAG_POSTS_SUCCESS, LOAD_HASHTAG_POSTS_FAILURE, LOAD_USER_POSTS_REQUEST, LOAD_USER_POSTS_SUCCESS, LOAD_USER_POSTS_FAILURE, UPLOAD_IMAGES_REQUEST, UPLOAD_IMAGES_SUCCESS, UPLOAD_IMAGES_FAILURE, REMOVE_IMAGE, LIKE_POST_REQUEST, LIKE_POST_SUCCESS, LIKE_POST_FAILURE, UNLIKE_POST_REQUEST, UNLIKE_POST_SUCCESS, UNLIKE_POST_FAILURE, LOAD_COMMENTS_REQUEST, LOAD_COMMENTS_SUCCESS, LOAD_COMMENTS_FAILURE, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE, RETWEET_REQUEST, RETWEET_SUCCESS, RETWEET_FAILURE, REMOVE_POST_REQUEST, REMOVE_POST_SUCCESS, REMOVE_POST_FAILURE, addPost, default */
+/*! exports provided: ADD_POST_REQUEST, ADD_POST_SUCCESS, ADD_POST_FAILURE, LOAD_HASHTAG_POSTS_REQUEST, LOAD_HASHTAG_POSTS_SUCCESS, LOAD_HASHTAG_POSTS_FAILURE, LOAD_USER_POSTS_REQUEST, LOAD_USER_POSTS_SUCCESS, LOAD_USER_POSTS_FAILURE, UPLOAD_IMAGES_REQUEST, UPLOAD_IMAGES_SUCCESS, UPLOAD_IMAGES_FAILURE, REMOVE_IMAGE, LIKE_POST_REQUEST, LIKE_POST_SUCCESS, LIKE_POST_FAILURE, UNLIKE_POST_REQUEST, UNLIKE_POST_SUCCESS, UNLIKE_POST_FAILURE, LOAD_COMMENTS_REQUEST, LOAD_COMMENTS_SUCCESS, LOAD_COMMENTS_FAILURE, LOAD_MAIN_POSTS_REQUEST, LOAD_MAIN_POSTS_SUCCESS, LOAD_MAIN_POSTS_FAILURE, ADD_COMMENT_REQUEST, ADD_COMMENT_SUCCESS, ADD_COMMENT_FAILURE, RETWEET_REQUEST, RETWEET_SUCCESS, RETWEET_FAILURE, REMOVE_POST_REQUEST, REMOVE_POST_SUCCESS, REMOVE_POST_FAILURE, addPost, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -659,6 +663,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_COMMENTS_REQUEST", function() { return LOAD_COMMENTS_REQUEST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_COMMENTS_SUCCESS", function() { return LOAD_COMMENTS_SUCCESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_COMMENTS_FAILURE", function() { return LOAD_COMMENTS_FAILURE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_MAIN_POSTS_REQUEST", function() { return LOAD_MAIN_POSTS_REQUEST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_MAIN_POSTS_SUCCESS", function() { return LOAD_MAIN_POSTS_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_MAIN_POSTS_FAILURE", function() { return LOAD_MAIN_POSTS_FAILURE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_COMMENT_REQUEST", function() { return ADD_COMMENT_REQUEST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_COMMENT_SUCCESS", function() { return ADD_COMMENT_SUCCESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_COMMENT_FAILURE", function() { return ADD_COMMENT_FAILURE; });
@@ -754,6 +761,9 @@ const UNLIKE_POST_FAILURE = 'UNLIKE_POST_FAILURE';
 const LOAD_COMMENTS_REQUEST = 'LOAD_COMMENTS_REQUEST';
 const LOAD_COMMENTS_SUCCESS = 'LOAD_COMMENTS_SUCCESS';
 const LOAD_COMMENTS_FAILURE = 'LOAD_COMMENTS_FAILURE';
+const LOAD_MAIN_POSTS_REQUEST = 'LOAD_MAIN_POSTS_REQUEST';
+const LOAD_MAIN_POSTS_SUCCESS = 'LOAD_MAIN_POSTS_SUCCESS';
+const LOAD_MAIN_POSTS_FAILURE = 'LOAD_MAIN_POSTS_FAILURE';
 const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
 const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
@@ -792,6 +802,25 @@ const reducer = (state = initialState, action) => {
           isAddingPost: false,
           addPostErrorReason: action.error
         });
+      }
+
+    case LOAD_MAIN_POSTS_REQUEST:
+      {
+        return _objectSpread({}, state, {
+          mainPosts: []
+        });
+      }
+
+    case LOAD_MAIN_POSTS_SUCCESS:
+      {
+        return _objectSpread({}, state, {
+          mainPosts: action.data
+        });
+      }
+
+    case LOAD_MAIN_POSTS_FAILURE:
+      {
+        return _objectSpread({}, state);
       }
 
     case ADD_COMMENT_REQUEST:
@@ -835,253 +864,6 @@ const reducer = (state = initialState, action) => {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (reducer);
-
-/***/ }),
-
-/***/ "./reducers/user.js":
-/*!**************************!*\
-  !*** ./reducers/user.js ***!
-  \**************************/
-/*! exports provided: SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE, LOG_IN_REQUEST, LOG_IN_SUCCESS, LOG_IN_FAILURE, LOG_OUT_REQUEST, LOG_OUT_SUCCESS, LOG_OUT_FAILURE, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAILURE, LOAD_FOLLOW_REQUEST, LOAD_FOLLOW_SUCCESS, LOAD_FOLLOW_FAILURE, FOLLOW_USER_REQUEST, FOLLOW_USER_SUCCESS, FOLLOW_USER_FAILURE, UNFOLLOW_USER_REQUEST, UNFOLLOW_USER_SUCCESS, UNFOLLOW_USER_FAILURE, REMOVE_FOLLOWER_REQUEST, REMOVE_FOLLOWER_SUCCESS, REMOVE_FOLLOWER_FAILURE, ADD_POST_TO_ME, signUpAction, signUpSuccess, loginRequestAction, logoutRequestAction, signUpRequestAction, loginAction, logoutAction, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SIGN_UP_REQUEST", function() { return SIGN_UP_REQUEST; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SIGN_UP_SUCCESS", function() { return SIGN_UP_SUCCESS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SIGN_UP_FAILURE", function() { return SIGN_UP_FAILURE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_IN_REQUEST", function() { return LOG_IN_REQUEST; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_IN_SUCCESS", function() { return LOG_IN_SUCCESS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_IN_FAILURE", function() { return LOG_IN_FAILURE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_OUT_REQUEST", function() { return LOG_OUT_REQUEST; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_OUT_SUCCESS", function() { return LOG_OUT_SUCCESS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_OUT_FAILURE", function() { return LOG_OUT_FAILURE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_USER_REQUEST", function() { return LOAD_USER_REQUEST; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_USER_SUCCESS", function() { return LOAD_USER_SUCCESS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_USER_FAILURE", function() { return LOAD_USER_FAILURE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_FOLLOW_REQUEST", function() { return LOAD_FOLLOW_REQUEST; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_FOLLOW_SUCCESS", function() { return LOAD_FOLLOW_SUCCESS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_FOLLOW_FAILURE", function() { return LOAD_FOLLOW_FAILURE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FOLLOW_USER_REQUEST", function() { return FOLLOW_USER_REQUEST; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FOLLOW_USER_SUCCESS", function() { return FOLLOW_USER_SUCCESS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FOLLOW_USER_FAILURE", function() { return FOLLOW_USER_FAILURE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNFOLLOW_USER_REQUEST", function() { return UNFOLLOW_USER_REQUEST; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNFOLLOW_USER_SUCCESS", function() { return UNFOLLOW_USER_SUCCESS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNFOLLOW_USER_FAILURE", function() { return UNFOLLOW_USER_FAILURE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_FOLLOWER_REQUEST", function() { return REMOVE_FOLLOWER_REQUEST; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_FOLLOWER_SUCCESS", function() { return REMOVE_FOLLOWER_SUCCESS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_FOLLOWER_FAILURE", function() { return REMOVE_FOLLOWER_FAILURE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_POST_TO_ME", function() { return ADD_POST_TO_ME; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signUpAction", function() { return signUpAction; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signUpSuccess", function() { return signUpSuccess; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginRequestAction", function() { return loginRequestAction; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logoutRequestAction", function() { return logoutRequestAction; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signUpRequestAction", function() { return signUpRequestAction; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginAction", function() { return loginAction; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logoutAction", function() { return logoutAction; });
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptors */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptor */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-
-
-
-
-
-
-
-
-function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
-
-const dummyUser = {
-  nickname: 'Jay',
-  Post: [],
-  Followings: [],
-  Followers: [],
-  id: 1
-};
-const initialState = {
-  isLoggedIn: false,
-  //로그인 여부 
-  isLoggingOut: false,
-  //로그아웃 시도중 
-  isLoggingIn: false,
-  //로그인 시도중 
-  loginErrorReason: '',
-  //로그인 에러 사유 
-  signedUp: false,
-  //회원가입 성공
-  isSigningUp: false,
-  //회원가입 시도 중 
-  signUpErrorReason: '',
-  //회원가입 실패 사유
-  me: null,
-  //내 정보 
-  followingList: [],
-  //팔로잉 리스트,
-  follwerList: [],
-  //팔로워 리스트,
-  userInfo: null //남의 정보
-
-};
-const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST';
-const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
-const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE';
-const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
-const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
-const LOG_IN_FAILURE = 'LOG_IN_FAILURE';
-const LOG_OUT_REQUEST = 'LOG_OUT_REQUEST';
-const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
-const LOG_OUT_FAILURE = 'LOG_OUT_FAILURE';
-const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
-const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
-const LOAD_USER_FAILURE = 'LOAD_USER_FAILURE';
-const LOAD_FOLLOW_REQUEST = 'LOAD_FOLLOW_REQUEST';
-const LOAD_FOLLOW_SUCCESS = 'LOAD_FOLLOW_SUCCESS';
-const LOAD_FOLLOW_FAILURE = 'LOAD_FOLLOW_FAILURE';
-const FOLLOW_USER_REQUEST = 'FOLLOW_USER_REQUEST';
-const FOLLOW_USER_SUCCESS = 'FOLLOW_USER_SUCCESS';
-const FOLLOW_USER_FAILURE = 'FOLLOW_USER_FAILURE';
-const UNFOLLOW_USER_REQUEST = 'UNFOLLOW_USER_REQUEST';
-const UNFOLLOW_USER_SUCCESS = 'UNFOLLOW_USER_SUCCESS';
-const UNFOLLOW_USER_FAILURE = 'UNFOLLOW_USER_FAILURE';
-const REMOVE_FOLLOWER_REQUEST = 'REMOVE_FOLLOWER_REQUEST';
-const REMOVE_FOLLOWER_SUCCESS = 'REMOVE_FOLLOWER_SUCCESS';
-const REMOVE_FOLLOWER_FAILURE = 'REMOVE_FOLLOWER_FAILURE';
-const ADD_POST_TO_ME = 'ADD_POST_TO_ME';
-const signUpAction = data => ({
-  type: SIGN_UP_REQUEST,
-  data
-});
-const signUpSuccess = {
-  type: SIGN_UP_SUCCESS
-};
-const loginRequestAction = data => ({
-  type: LOG_IN_REQUEST,
-  data
-});
-const logoutRequestAction = {
-  type: LOG_OUT_REQUEST
-};
-const signUpRequestAction = data => ({
-  type: SIGN_UP_REQUEST,
-  data
-});
-const loginAction = data => {
-  return {
-    type: LOG_IN_REQUEST,
-    data: {
-      nickname: 'Jay'
-    }
-  };
-};
-const logoutAction = {
-  type: LOG_OUT_REQUEST
-};
-/* harmony default export */ __webpack_exports__["default"] = ((state = initialState, action) => {
-  switch (action.type) {
-    case LOG_IN_REQUEST:
-      {
-        return _objectSpread({}, state, {
-          isLoggingIn: true
-        });
-      }
-
-    case LOG_IN_SUCCESS:
-      {
-        return _objectSpread({}, state, {
-          isLoggedIn: true,
-          isLoading: false,
-          me: action.data,
-          isLoading: false
-        });
-      }
-
-    case LOG_IN_FAILURE:
-      {
-        return _objectSpread({}, state, {
-          isLoggingIn: false,
-          isLoggedIn: false,
-          logInErrorReason: action.error,
-          me: null
-        });
-      }
-
-    case LOG_OUT_REQUEST:
-      {
-        return _objectSpread({}, state, {
-          isLoggingOut: true
-        });
-      }
-
-    case LOG_OUT_SUCCESS:
-      {
-        return _objectSpread({}, state, {
-          isLoggedIn: false,
-          isLoggingOut: false,
-          me: null
-        });
-      }
-
-    case LOAD_USER_REQUEST:
-      {
-        return _objectSpread({}, state);
-      }
-
-    case LOAD_USER_SUCCESS:
-      {
-        return _objectSpread({}, state, {
-          me: action.data
-        });
-      }
-
-    case LOAD_USER_FAILURE:
-      {
-        return _objectSpread({}, state);
-      }
-
-    case SIGN_UP_REQUEST:
-      {
-        return _objectSpread({}, state, {
-          isSigningUp: true
-        });
-      }
-
-    case SIGN_UP_SUCCESS:
-      {
-        return _objectSpread({}, state, {
-          isSigningUp: false,
-          isSignedUp: true
-        });
-      }
-
-    case SIGN_UP_FAILURE:
-      {
-        return _objectSpread({}, state, {
-          isSigningUp: false,
-          signUpErrorReason: action.error
-        });
-      }
-
-    default:
-      {
-        return _objectSpread({}, state, {
-          signUpData: action.data
-        });
-      }
-  }
-});
 
 /***/ }),
 

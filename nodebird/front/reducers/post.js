@@ -64,6 +64,10 @@ export const LOAD_COMMENTS_REQUEST = 'LOAD_COMMENTS_REQUEST';
 export const LOAD_COMMENTS_SUCCESS = 'LOAD_COMMENTS_SUCCESS';
 export const LOAD_COMMENTS_FAILURE = 'LOAD_COMMENTS_FAILURE';
 
+export const LOAD_MAIN_POSTS_REQUEST = 'LOAD_MAIN_POSTS_REQUEST';
+export const LOAD_MAIN_POSTS_SUCCESS = 'LOAD_MAIN_POSTS_SUCCESS';
+export const LOAD_MAIN_POSTS_FAILURE = 'LOAD_MAIN_POSTS_FAILURE';
+
 export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
@@ -104,6 +108,23 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 isAddingPost: false,
                 addPostErrorReason: action.error,
+            };
+        }
+        case LOAD_MAIN_POSTS_REQUEST: {
+            return {
+                ...state, 
+                mainPosts: []
+            };
+        }
+        case LOAD_MAIN_POSTS_SUCCESS: {
+            return {
+                ...state,
+                mainPosts: action.data,
+            }
+        }
+        case LOAD_MAIN_POSTS_FAILURE: {
+            return {
+                ...state,
             };
         }
         case ADD_COMMENT_REQUEST: {
