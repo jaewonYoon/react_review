@@ -26,6 +26,7 @@ const PostCard =({post}) => {
     },[me&&me.id]);
 
     useEffect( () => {
+        console.log(post);
         setCommentText(''); 
     },[commentAdded ===true])
     const onChangeCommentText = useCallback((e) => {
@@ -70,7 +71,7 @@ const PostCard =({post}) => {
                                     content={item.content}
                                 />
                             </li>
-                        )}
+                        )}                                                                                                                                                           
                     />
                 </>
             )}
