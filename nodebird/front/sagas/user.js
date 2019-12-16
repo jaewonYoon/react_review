@@ -10,7 +10,6 @@ import {
 
 
 function loginAPI(loginData) {
-    console.log(loginData);
     //서버에 API 요청을 보내는 부분 
     return axios.post('/user/login', loginData, {
         withCredentials:true
@@ -63,6 +62,7 @@ function loadUserAPI() {
 function* loadUser() {
     try{
         const result = yield call(loadUserAPI);
+        yield console.log('loadUser:', result);
         yield put({
             type: LOAD_USER_SUCCESS,
             data: result.data

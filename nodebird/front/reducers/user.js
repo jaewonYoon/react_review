@@ -164,7 +164,6 @@ export default (state=initialState,action) => {
         default: {
             return {
                 ...state,
-                signUpData: action.data, 
             };
         }
     }

@@ -14,8 +14,9 @@ const Home = ({}) => {
         // 첫번째 렌더링 될 때 이 dispatch도 함께 되는 것 
         dispatch({
             type: LOAD_MAIN_POSTS_REQUEST
-        })
+        });
     },[]);
+    console.log(mainPosts);
     return(
         <div>
             {me && <PostForm />}

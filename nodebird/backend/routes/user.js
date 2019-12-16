@@ -11,6 +11,8 @@ router.get('/', (req,res) => {
         const user =  Object.assign({}, req.user.toJSON());
         delete user.password; 
         return res.json(user);    
+        // const user = req.user.toJSON(); 
+        // return res.json
     }
 });
 router.post('/',async(req,res,next) => {
@@ -27,7 +29,6 @@ router.post('/',async(req,res,next) => {
             userId: req.body.userId,
             password: hashedPassword
         });
-        console.log(newUser);
         return res.status(200).json(newUser); 
     } catch(e) {
         console.error(e); 

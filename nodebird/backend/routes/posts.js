@@ -1,6 +1,7 @@
 const express = require('express');
+const db = require('../models');
+ 
 const router = express.Router();
-const db = require('../models'); 
 
 router.get('/', async(req,res,next) => { //GET /api/posts
     try{
@@ -8,9 +9,11 @@ router.get('/', async(req,res,next) => { //GET /api/posts
             include: [{
                 model: db.User,
                 attributes: ['id', 'nickname'] 
-            }]
-        });     
-        res.json(posts);
+            }],
+            order:[['createdAt', 'DESC']]
+        })
+        console.log(JSON.stringify(posts));  
+        res.json(JSON.stringify(posts));
     }catch(e){
         console.error(e);
         next(e);

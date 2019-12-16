@@ -70,7 +70,7 @@ const PostCard =({post}) => {
                                     content={item.content}
                                 />
                             </li>
-                        )}
+                        )}                                                                                                                                                           
                     />
                 </>
             )}

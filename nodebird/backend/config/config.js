@@ -22,7 +22,7 @@ module.exports = {
   "production": {
     "username": "bunggl",
     "password": process.env.DB_PASSWORD,
-    "database": "database_production",
+    "database": "react_nodebird",
     "host": process.env.DB_HOST,
     "dialect": "mysql",
     "operatorsAliases": false
