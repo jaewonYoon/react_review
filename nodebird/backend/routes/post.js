@@ -9,7 +9,7 @@ router.post('/',async(req,res,next) => { //api/post
             content: req.body.content, // ex) jay파이팅 #구독 #좋아요 눌러주세요. 
             UserId: req.user.id 
         });
-        if(hashtages) {
+        if(hashtags) {
             const result = await Promise.all(hashtags.map(tag => db.Hashtag.findOrCreate({ //없으면 만들고 있으면 아무것도 안하고
                 where: {name: tag.slice(1).toLowerCase()} //# 때고 영어 대문자 소문자로 고치고 
             })));          
@@ -17,7 +17,6 @@ router.post('/',async(req,res,next) => { //api/post
         }
         // const User = await newPost.getUser();
         // newPost.User = User;
-        //res.json(newPost);
         const fullPost = await db.Post.findOne({
             where: { id: newPost.id},
             include: [{

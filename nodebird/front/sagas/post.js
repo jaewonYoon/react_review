@@ -34,16 +34,18 @@ function* watchAddPost() {
 
 
 function* loadMainPostsAPI(){
-    return axios.get('/posts');
+    axios.get('/posts').then((res) => {
+        return res; 
+    });
 
 }
 function* loadMainPosts() {
     try{
-        const result = yield call(loadMainPostsAPI) //loadMainPostAPI의 postData 로 들어간다.
-        yield console.log(result);
+        const result = yield call(loadMainPostsAPI); //loadMainPostAPI의 postData 로 들어간다.
+        
         yield put({
             type: LOAD_MAIN_POSTS_SUCCESS,
-            data: result.data 
+            data: result.data
         })
     } catch(e){ 
         yield put({

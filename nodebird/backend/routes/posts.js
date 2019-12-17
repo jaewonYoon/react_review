@@ -3,7 +3,7 @@ const db = require('../models');
  
 const router = express.Router();
 
-router.get('/', async(req,res,next) => { //GET /api/posts
+router.get('/', async (req,res,next) => { //GET /api/posts
     try{
         const posts = await db.Post.findAll({
             include: [{
@@ -12,8 +12,9 @@ router.get('/', async(req,res,next) => { //GET /api/posts
             }],
             order:[['createdAt', 'DESC']]
         })
-        console.log(JSON.stringify(posts));  
-        res.json(JSON.stringify(posts));
+        console.log(posts); 
+        res.json(posts);
+        // res.send(JSON.stringify(posts));
     }catch(e){
         console.error(e);
         next(e);

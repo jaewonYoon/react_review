@@ -609,17 +609,16 @@ const Home = ({}) => {
       type: _reducers_post__WEBPACK_IMPORTED_MODULE_4__["LOAD_MAIN_POSTS_REQUEST"]
     });
   }, []);
-  console.log(mainPosts);
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 20
     },
     __self: undefined
   }, me && __jsx(_components_PostForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22
+      lineNumber: 21
     },
     __self: undefined
   }), mainPosts.map(c => {
@@ -628,7 +627,7 @@ const Home = ({}) => {
       post: c,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 25
+        lineNumber: 24
       },
       __self: undefined
     });

@@ -3527,14 +3527,15 @@ function* watchAddPost() {
 }
 
 function* loadMainPostsAPI() {
-  return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/posts');
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/posts').then(res => {
+    return res;
+  });
 }
 
 function* loadMainPosts() {
   try {
     const result = yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["call"])(loadMainPostsAPI); //loadMainPostAPI의 postData 로 들어간다.
 
-    yield console.log(result);
     yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["put"])({
       type: _reducers_post__WEBPACK_IMPORTED_MODULE_2__["LOAD_MAIN_POSTS_SUCCESS"],
       data: result.data
