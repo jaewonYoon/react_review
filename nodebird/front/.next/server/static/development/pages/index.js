@@ -233,7 +233,32 @@ const PostCard = ({
       __self: undefined
     }, post.User.nickname[0]),
     title: post.User.nickname,
-    description: post.content,
+    description: __jsx("div", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 50
+      },
+      __self: undefined
+    }, post.content.split('\(#[^\s]+)/g').map(v => {
+      if (v.match('/#[^\s]+/')) {
+        return __jsx(Link, {
+          href: "/hashtag",
+          key: v,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 53
+          },
+          __self: undefined
+        }, __jsx("a", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 53
+          },
+          __self: undefined
+        }, v));
+      }
+    })) //a tag x -> Link
+    ,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 47
@@ -243,13 +268,13 @@ const PostCard = ({
     onSubmit: onSubmitComment,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 55
+      lineNumber: 61
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Form"].Item, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 56
+      lineNumber: 62
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Input"].TextArea, {
@@ -258,7 +283,7 @@ const PostCard = ({
     onChange: onChangeCommentText,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 57
+      lineNumber: 63
     },
     __self: undefined
   })), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Button"], {
@@ -267,7 +292,7 @@ const PostCard = ({
     loading: isAddingComment,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 59
+      lineNumber: 65
     },
     __self: undefined
   }, "\uC090\uC57D")), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["List"], {
@@ -277,7 +302,7 @@ const PostCard = ({
     renderItem: item => __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 66
+        lineNumber: 72
       },
       __self: undefined
     }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Comment"], {
@@ -285,20 +310,20 @@ const PostCard = ({
       avatar: __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Avatar"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 69
+          lineNumber: 75
         },
         __self: undefined
       }, item.User.nickname[0]),
       content: item.content,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 67
+        lineNumber: 73
       },
       __self: undefined
     })),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 61
+      lineNumber: 67
     },
     __self: undefined
   })));
