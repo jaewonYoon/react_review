@@ -3066,14 +3066,6 @@ const initialState = {
   addCommentErrorReason: '',
   commentAdded: false
 };
-const dummyPost = {
-  id: 2,
-  User: {
-    id: 1,
-    nickname: 'jay'
-  },
-  content: '나는 더미입니다.'
-};
 const dummyComment = {
   User: {
     id: 1,
@@ -3500,8 +3492,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function* addPostAPI(postData) {
-  return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/post/', postData, {
-    withCredentials: true
+  return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/post', postData, {
+    withCredentials: true //로그인 사람만 글 적을 수 있게. 쿠키같이 전송 
+
   });
 }
 
@@ -3509,7 +3502,6 @@ function* addPost(action) {
   try {
     const result = yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["call"])(addPostAPI, action.data); //addPostAPI의 postData 로 들어간다.
 
-    console.log(result);
     yield Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__["put"])({
       type: _reducers_post__WEBPACK_IMPORTED_MODULE_2__["ADD_POST_SUCCESS"],
       data: result.data

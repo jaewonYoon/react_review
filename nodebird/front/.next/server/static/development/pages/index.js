@@ -156,6 +156,7 @@ const PostCard = ({
     });
   }, [me && me.id]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    console.log('post:', post);
     setCommentText('');
   }, [commentAdded === true]);
   const onChangeCommentText = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(e => {
@@ -164,7 +165,7 @@ const PostCard = ({
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 35
+      lineNumber: 36
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Card"], {
@@ -174,7 +175,7 @@ const PostCard = ({
       src: post.img,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 38
+        lineNumber: 39
       },
       __self: undefined
     }),
@@ -183,7 +184,7 @@ const PostCard = ({
       key: "retweet",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 40
+        lineNumber: 41
       },
       __self: undefined
     }), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
@@ -191,7 +192,7 @@ const PostCard = ({
       key: "heart",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 41
+        lineNumber: 42
       },
       __self: undefined
     }), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
@@ -200,7 +201,7 @@ const PostCard = ({
       onClick: onToggleComment,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 42
+        lineNumber: 43
       },
       __self: undefined
     }), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
@@ -208,27 +209,27 @@ const PostCard = ({
       key: "ellipsis",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 43
+        lineNumber: 44
       },
       __self: undefined
     })],
     extra: __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Button"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 45
+        lineNumber: 46
       },
       __self: undefined
     }, "\uD314\uB85C\uC6B0"),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
+      lineNumber: 37
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Card"].Meta, {
     avatar: __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Avatar"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 48
+        lineNumber: 49
       },
       __self: undefined
     }, post.User.nickname[0]),
@@ -236,7 +237,7 @@ const PostCard = ({
     description: __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 50
+        lineNumber: 51
       },
       __self: undefined
     }, post.content.split('\(#[^\s]+)/g').map(v => {
@@ -246,13 +247,13 @@ const PostCard = ({
           key: v,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 53
+            lineNumber: 54
           },
           __self: undefined
         }, __jsx("a", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 53
+            lineNumber: 54
           },
           __self: undefined
         }, v));
@@ -261,20 +262,20 @@ const PostCard = ({
     ,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 47
+      lineNumber: 48
     },
     __self: undefined
   })), commentFormOpened && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Form"], {
     onSubmit: onSubmitComment,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 61
+      lineNumber: 62
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Form"].Item, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 62
+      lineNumber: 63
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Input"].TextArea, {
@@ -283,7 +284,7 @@ const PostCard = ({
     onChange: onChangeCommentText,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 63
+      lineNumber: 64
     },
     __self: undefined
   })), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Button"], {
@@ -292,7 +293,7 @@ const PostCard = ({
     loading: isAddingComment,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 65
+      lineNumber: 66
     },
     __self: undefined
   }, "\uC090\uC57D")), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["List"], {
@@ -302,7 +303,7 @@ const PostCard = ({
     renderItem: item => __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 72
+        lineNumber: 73
       },
       __self: undefined
     }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Comment"], {
@@ -310,20 +311,20 @@ const PostCard = ({
       avatar: __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Avatar"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 75
+          lineNumber: 76
         },
         __self: undefined
       }, item.User.nickname[0]),
       content: item.content,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 73
+        lineNumber: 74
       },
       __self: undefined
     })),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 68
     },
     __self: undefined
   })));
@@ -377,7 +378,7 @@ const PostForm = () => {
   } = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(state => state.post);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     setText('');
-  }, [postAdded === true]);
+  }, [postAdded]);
   const onSubmitForm = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(e => {
     e.preventDefault();
 
@@ -385,7 +386,6 @@ const PostForm = () => {
       return alert('게시글을 작성하세요.');
     }
 
-    console.log(text);
     dispatch({
       type: _reducers_post__WEBPACK_IMPORTED_MODULE_3__["ADD_POST_REQUEST"],
       data: {
@@ -618,21 +618,20 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-const Home = ({}) => {
+const Home = () => {
   const {
     me
   } = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useSelector"])(state => state.user);
   const {
     mainPosts
   } = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useSelector"])(state => state.post); // const {isLoggedIn, user} = useSelector(state => state.user);
-  //useEffect할 때 [] 안에 아무것도 없다면 componentDidMount와 같음 
 
-  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useDispatch"])();
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    // 첫번째 렌더링 될 때 이 dispatch도 함께 되는 것 
-    dispatch({
-      type: _reducers_post__WEBPACK_IMPORTED_MODULE_4__["LOAD_MAIN_POSTS_REQUEST"]
-    });
+  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useDispatch"])(); //useEffect할 때 [] 안에 아무것도 없다면 componentDidMount와 같음 
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {// 첫번째 렌더링 될 때 이 dispatch도 함께 되는 것 
+    // dispatch({
+    //     type: LOAD_MAIN_POSTS_REQUEST
+    // });
   }, []);
   return __jsx("div", {
     __source: {
@@ -752,14 +751,6 @@ const initialState = {
   isAddingComment: false,
   addCommentErrorReason: '',
   commentAdded: false
-};
-const dummyPost = {
-  id: 2,
-  User: {
-    id: 1,
-    nickname: 'jay'
-  },
-  content: '나는 더미입니다.'
 };
 const dummyComment = {
   User: {

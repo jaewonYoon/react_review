@@ -1,4 +1,4 @@
-import {all,fork, put, takeEvery, call, takeLatest, delay} from 'redux-saga/effects'
+import {all,fork, put, call, takeLatest, delay} from 'redux-saga/effects'
 import axios from 'axios'; 
 import { 
     ADD_POST_SUCCESS, ADD_POST_FAILURE, ADD_POST_REQUEST,
@@ -8,15 +8,14 @@ import {
 
 
 function* addPostAPI(postData){
-    return axios.post('/post/',postData, {
-        withCredentials: true, 
+    return axios.post('/post',postData, {
+        withCredentials: true,  //로그인 사람만 글 적을 수 있게. 쿠키같이 전송 
     });
 
 }
 function* addPost(action) {
     try{
         const result = yield call(addPostAPI, action.data) //addPostAPI의 postData 로 들어간다.
-        console.log(result);
         yield put({
             type: ADD_POST_SUCCESS,
             data: result.data 

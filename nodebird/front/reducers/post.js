@@ -18,14 +18,6 @@ const initialState= {
     commentAdded: false
 }
 
-const dummyPost = {
-    id: 2, 
-    User: {
-       id: 1,
-       nickname: 'jay',
-    },
-    content: '나는 더미입니다.'
-}
 const dummyComment = {
     User: {
         id: 1,

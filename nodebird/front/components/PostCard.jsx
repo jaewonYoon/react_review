@@ -26,6 +26,7 @@ const PostCard =({post}) => {
     },[me&&me.id]);
 
     useEffect( () => {
+        console.log('post:', post);
         setCommentText(''); 
     },[commentAdded ===true])
     const onChangeCommentText = useCallback((e) => {
