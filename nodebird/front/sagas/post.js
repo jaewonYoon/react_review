@@ -33,15 +33,11 @@ function* watchAddPost() {
 
 
 function* loadMainPostsAPI(){
-    axios.get('/posts').then((res) => {
-        return res; 
-    });
-
+    return axios.get('/posts');
 }
 function* loadMainPosts() {
     try{
         const result = yield call(loadMainPostsAPI); //loadMainPostAPI의 postData 로 들어간다.
-        
         yield put({
             type: LOAD_MAIN_POSTS_SUCCESS,
             data: result.data

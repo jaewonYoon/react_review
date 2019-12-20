@@ -16,7 +16,16 @@ router.post('/', async (req,res,next) => {
             console.log(result); 
             await newPost.addHashtags(result.map( r => r[0]));
         }
-        res.json(newPost);
+        //const User = await newPost.getUser();
+        //newPost.User = User;
+        //res.json(newPost);
+        const fullPost = await db.Post.findOne({
+            where:{id:newPost.id},
+            include:[{
+                model:db.User,
+            }],
+        });
+        res.json(fullPost);
     } catch(e) {
         console.error(e);
         next(e);

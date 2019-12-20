@@ -156,7 +156,6 @@ const PostCard = ({
     });
   }, [me && me.id]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    console.log('post:', post);
     setCommentText('');
   }, [commentAdded === true]);
   const onChangeCommentText = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(e => {
@@ -165,7 +164,7 @@ const PostCard = ({
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
+      lineNumber: 35
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Card"], {
@@ -175,7 +174,7 @@ const PostCard = ({
       src: post.img,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 39
+        lineNumber: 38
       },
       __self: undefined
     }),
@@ -184,7 +183,7 @@ const PostCard = ({
       key: "retweet",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 41
+        lineNumber: 40
       },
       __self: undefined
     }), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
@@ -192,7 +191,7 @@ const PostCard = ({
       key: "heart",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 42
+        lineNumber: 41
       },
       __self: undefined
     }), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
@@ -201,7 +200,7 @@ const PostCard = ({
       onClick: onToggleComment,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 43
+        lineNumber: 42
       },
       __self: undefined
     }), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
@@ -209,27 +208,27 @@ const PostCard = ({
       key: "ellipsis",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 44
+        lineNumber: 43
       },
       __self: undefined
     })],
     extra: __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Button"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 46
+        lineNumber: 45
       },
       __self: undefined
     }, "\uD314\uB85C\uC6B0"),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 37
+      lineNumber: 36
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Card"].Meta, {
     avatar: __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Avatar"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 49
+        lineNumber: 48
       },
       __self: undefined
     }, post.User.nickname[0]),
@@ -237,7 +236,7 @@ const PostCard = ({
     description: __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 51
+        lineNumber: 50
       },
       __self: undefined
     }, post.content.split('\(#[^\s]+)/g').map(v => {
@@ -247,13 +246,13 @@ const PostCard = ({
           key: v,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 54
+            lineNumber: 53
           },
           __self: undefined
         }, __jsx("a", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 54
+            lineNumber: 53
           },
           __self: undefined
         }, v));
@@ -262,20 +261,20 @@ const PostCard = ({
     ,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 48
+      lineNumber: 47
     },
     __self: undefined
   })), commentFormOpened && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Form"], {
     onSubmit: onSubmitComment,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 62
+      lineNumber: 61
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Form"].Item, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 63
+      lineNumber: 62
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Input"].TextArea, {
@@ -284,7 +283,7 @@ const PostCard = ({
     onChange: onChangeCommentText,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 64
+      lineNumber: 63
     },
     __self: undefined
   })), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Button"], {
@@ -293,7 +292,7 @@ const PostCard = ({
     loading: isAddingComment,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 65
     },
     __self: undefined
   }, "\uC090\uC57D")), __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["List"], {
@@ -303,7 +302,7 @@ const PostCard = ({
     renderItem: item => __jsx("li", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 73
+        lineNumber: 72
       },
       __self: undefined
     }, __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Comment"], {
@@ -311,20 +310,20 @@ const PostCard = ({
       avatar: __jsx(antd__WEBPACK_IMPORTED_MODULE_2__["Avatar"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 76
+          lineNumber: 75
         },
         __self: undefined
       }, item.User.nickname[0]),
       content: item.content,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 74
+        lineNumber: 73
       },
       __self: undefined
     })),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 68
+      lineNumber: 67
     },
     __self: undefined
   })));
@@ -404,7 +403,7 @@ const PostForm = () => {
     onSubmit: onSubmitForm,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 30
     },
     __self: undefined
   }, __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Input"].TextArea, {
@@ -413,13 +412,13 @@ const PostForm = () => {
     onChange: onChangeText,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 31
     },
     __self: undefined
   }), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 32
     },
     __self: undefined
   }, __jsx("input", {
@@ -428,13 +427,13 @@ const PostForm = () => {
     hidden: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 33
     },
     __self: undefined
   }), __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 33
+      lineNumber: 34
     },
     __self: undefined
   }, " \uC774\uBBF8\uC9C0 \uC5C5\uB85C\uB4DC"), __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Button"], {
@@ -446,13 +445,13 @@ const PostForm = () => {
     loading: isAddingPost,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 35
     },
     __self: undefined
   }, "\uC9F9\uCA31")), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
+      lineNumber: 37
     },
     __self: undefined
   }, imagePaths.map((v, i) => {
@@ -463,7 +462,7 @@ const PostForm = () => {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 39
+        lineNumber: 40
       },
       __self: undefined
     }, __jsx("img", {
@@ -474,19 +473,19 @@ const PostForm = () => {
       alt: v,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 40
+        lineNumber: 41
       },
       __self: undefined
     }), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 41
+        lineNumber: 42
       },
       __self: undefined
     }, __jsx(antd__WEBPACK_IMPORTED_MODULE_1__["Button"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 42
+        lineNumber: 43
       },
       __self: undefined
     }, "\uC81C\uAC70")));
@@ -624,25 +623,27 @@ const Home = () => {
   } = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useSelector"])(state => state.user);
   const {
     mainPosts
-  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useSelector"])(state => state.post); // const {isLoggedIn, user} = useSelector(state => state.user);
-
+  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useSelector"])(state => state.post);
   const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["useDispatch"])(); //useEffect할 때 [] 안에 아무것도 없다면 componentDidMount와 같음 
 
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {// 첫번째 렌더링 될 때 이 dispatch도 함께 되는 것 
-    // dispatch({
-    //     type: LOAD_MAIN_POSTS_REQUEST
-    // });
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    // 첫번째 렌더링 될 때 이 dispatch도 함께 되는 것 
+    dispatch({
+      type: _reducers_post__WEBPACK_IMPORTED_MODULE_4__["LOAD_MAIN_POSTS_REQUEST"]
+    });
   }, []);
+  console.log('mainPosts:', mainPosts);
+  console.log('me:', me);
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 21
     },
     __self: undefined
   }, me && __jsx(_components_PostForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 22
     },
     __self: undefined
   }), mainPosts.map(c => {
@@ -651,7 +652,7 @@ const Home = () => {
       post: c,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 24
+        lineNumber: 25
       },
       __self: undefined
     });

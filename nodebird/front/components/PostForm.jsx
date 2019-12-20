@@ -21,6 +21,7 @@ const PostForm = () => {
                 content: text.trim(), 
             }
         })
+        
     },[text]);
     const onChangeText = useCallback((e) => {
         setText(e.target.value);

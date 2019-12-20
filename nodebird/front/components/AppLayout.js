@@ -5,7 +5,7 @@ import {useSelector, useDispatch} from 'react-redux';
 
 import LoginForm from './LoginForm';
 import UserProfile from './UserProfile';
-import {loginAction,LOAD_USER_REQUEST} from '../reducers/user';
+import {LOAD_USER_REQUEST} from '../reducers/user';
 const AppLayout = ({children}) => {
     const dispatch = useDispatch(); 
     const {me} = useSelector((state) => state.user); 

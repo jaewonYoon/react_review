@@ -3519,9 +3519,7 @@ function* watchAddPost() {
 }
 
 function* loadMainPostsAPI() {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/posts').then(res => {
-    return res;
-  });
+  return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/posts');
 }
 
 function* loadMainPosts() {
