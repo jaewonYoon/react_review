@@ -8,7 +8,7 @@ import UserProfile from './UserProfile';
 import {LOAD_USER_REQUEST} from '../reducers/user';
 const AppLayout = ({children}) => {
     const dispatch = useDispatch(); 
-    const {me} = useSelector((state) => state.user); 
+    const {me} = useSelector(state => state.user); 
     useEffect( () => {
         if(!me) {
         dispatch({
